@@ -287,6 +287,97 @@
     }
 
     /* ── Logo tab (mascots) ────────────────── */
+    .logo-section { margin-bottom: 48px; }
+    .logo-section + .logo-section { margin-top: 0; }
+    .logo-section-lead {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      padding: 18px 22px;
+      border-left: 3px solid var(--primary);
+      background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 20px;
+      max-width: 820px;
+    }
+    .logo-image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .logo-image {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .logo-image:hover { border-color: var(--border-strong); }
+    .logo-image-frame {
+      aspect-ratio: 4 / 5;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+    .logo-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .logo-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-mute);
+      text-align: center;
+      padding: 24px;
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      margin: 12px;
+    }
+    .logo-image-placeholder svg { width: 32px; height: 32px; opacity: 0.5; }
+    .logo-image-placeholder .ph-title { font-size: 13px; font-weight: 600; color: var(--text-dim); }
+    .logo-image-placeholder .ph-path {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--text-mute);
+      word-break: break-all;
+    }
+    .logo-image-caption {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .logo-reference-head {
+      margin-top: 8px;
+      margin-bottom: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .logo-reference-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .logo-reference-subtitle {
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
     .controls {
       display: flex;
       flex-wrap: wrap;
@@ -440,20 +531,29 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 32px;
-      max-width: 560px;
-      width: 100%;
+      max-width: min(1100px, 95vw);
+      width: auto;
       display: flex; flex-direction: column;
       gap: 16px; align-items: center;
       position: relative;
     }
     .lightbox-img {
-      width: 320px; height: 320px; max-width: 100%;
+      max-width: 100%;
+      max-height: 75vh;
       background: var(--surface-2);
       border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      padding: 24px;
+      padding: 16px;
     }
-    .lightbox-img img { max-width: 100%; max-height: 100%; }
+    .lightbox-img img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+    .lightbox-img.small { width: 320px; height: 320px; padding: 24px; }
+    .lightbox-img.small img { max-width: 100%; max-height: 100%; }
     .lightbox-title { font-size: 22px; font-weight: 700; text-align: center; }
     .lightbox-desc { font-size: 14px; color: var(--text-dim); text-align: center; max-width: 440px; }
     .close-btn {
@@ -860,7 +960,22 @@
   <section id="panel-logo" class="tab-panel" role="tabpanel">
     <div class="panel-head">
       <h2 class="panel-title">Logo</h2>
-      <p class="panel-subtitle">Companies with animal or creature mascots in their app icon or logo design. Click any image to maximize.</p>
+      <p class="panel-subtitle">The Bounce brand mascot — traditional mark and anthropomorphic guide.</p>
+    </div>
+
+    <div class="logo-section">
+      <p class="logo-section-lead">A traditional brand mascot that serves as a standout visual identifier for the brand.</p>
+      <div class="logo-image-grid" id="logo-grid-traditional"></div>
+    </div>
+
+    <div class="logo-section">
+      <p class="logo-section-lead">An anthropomorphic version of the brand mascot that serves as the front-of-house face of the brand, appearing throughout advertising and the product flow to give users direction, advice, and encouragement.</p>
+      <div class="logo-image-grid" id="logo-grid-anthropomorphic"></div>
+    </div>
+
+    <div class="logo-reference-head">
+      <div class="logo-reference-title">Reference: animal mascots in the wild</div>
+      <div class="logo-reference-subtitle">Companies with animal or creature mascots in their app icon or logo. Click any image to maximize.</div>
     </div>
     <div class="controls">
       <input type="search" class="search" id="search" placeholder="Search by company, description, or notes…" aria-label="Search">
@@ -1103,6 +1218,7 @@
     lightboxImg.alt = `${d.company} icon`;
     lightboxTitle.textContent = d.company;
     lightboxDesc.textContent = d.description;
+    document.querySelector('.lightbox-img').classList.add('small');
     lightbox.hidden = false;
     lightbox.classList.add('open');
     closeBtn.focus();
@@ -1228,11 +1344,74 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  // ── Logo concept images
+  const logoTraditional = [
+    { caption: "Calm Head Alternatives", src: "images/logo/01-calm-head-alternatives.png" },
+    { caption: "The Bounce Motion Mark",  src: "images/logo/02-bounce-motion-mark.png" },
+    { caption: "The Handoff Kangaroo · Visor + Vest", src: "images/logo/03-handoff-kangaroo.png" },
+  ];
+  const logoAnthropomorphic = [
+    { caption: "Utility Guide Joey", src: "images/logo/04-utility-guide-joey.png" },
+    { caption: "Fresh-Start Joey",   src: "images/logo/05-fresh-start-joey.png" },
+    { caption: "Cash-Out Joey",      src: "images/logo/06-cash-out-joey.png" },
+  ];
+
+  function renderLogoGrid(targetId, items) {
+    const container = document.getElementById(targetId);
+    if (!container) return;
+    container.innerHTML = items.map(it => `
+      <figure class="logo-image">
+        <div class="logo-image-frame" data-src="${esc(it.src)}" data-caption="${esc(it.caption)}" tabindex="0" role="button" aria-label="Maximize ${esc(it.caption)}">
+          <img src="${esc(it.src)}" alt="${esc(it.caption)}" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="logo-image-placeholder" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <div class="ph-title">${esc(it.caption)}</div>
+            <div class="ph-path">${esc(it.src)}</div>
+          </div>
+        </div>
+        <figcaption class="logo-image-caption">${esc(it.caption)}</figcaption>
+      </figure>
+    `).join('');
+
+    container.querySelectorAll('.logo-image-frame').forEach(frame => {
+      const open = () => {
+        const img = frame.querySelector('img');
+        // Only open lightbox if the real image loaded
+        if (img.style.display === 'none' || !img.complete || img.naturalWidth === 0) return;
+        openImageLightbox(frame.dataset.src, frame.dataset.caption);
+      };
+      frame.addEventListener('click', open);
+      frame.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+    });
+  }
+
+  function openImageLightbox(src, caption) {
+    lastFocus = document.activeElement;
+    lightboxImg.src = src;
+    lightboxImg.alt = caption;
+    lightboxTitle.textContent = caption;
+    lightboxDesc.textContent = '';
+    document.querySelector('.lightbox-img').classList.remove('small');
+    lightbox.hidden = false;
+    lightbox.classList.add('open');
+    closeBtn.focus();
+    document.body.style.overflow = 'hidden';
+  }
+
   // ── Init
   renderMascots();
   renderConcepts();
   renderTypes();
   renderPaletteSwatches();
+  renderLogoGrid('logo-grid-traditional', logoTraditional);
+  renderLogoGrid('logo-grid-anthropomorphic', logoAnthropomorphic);
 
   const stored = localStorage.getItem(STORAGE_KEY);
   const initial = palettes.find(p => p.hex.toLowerCase() === (stored || '').toLowerCase())
