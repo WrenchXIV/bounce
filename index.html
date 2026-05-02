@@ -158,6 +158,124 @@
       max-width: 380px;
     }
 
+    /* ── Vision tab ──────────────────────────── */
+    .vision-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 820px;
+    }
+    .vision-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+    .vision-section.highlight {
+      border-color: var(--primary);
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--primary) 8%, var(--surface)) 0%,
+        var(--surface) 100%);
+    }
+    .vision-section.question {
+      border-style: dashed;
+    }
+    .vision-h {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .vision-h .accent { color: var(--primary); }
+    .vision-lead {
+      color: var(--text-dim);
+      font-size: 14px;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .vision-section p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .vision-section p:last-child { margin-bottom: 0; }
+    .vision-list {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .vision-list > li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .vision-list > li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .vision-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .vision-list ul li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+    .vision-list ul li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0.75em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-mute);
+    }
+    .vision-list strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .vision-list .label {
+      color: var(--text);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .vision-sub-label {
+      font-size: 13px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin: 18px 0 8px;
+    }
+
+    @media (max-width: 600px) {
+      .vision-section { padding: 22px 20px; }
+    }
+
     /* ── Logo tab (mascots) ────────────────── */
     .controls {
       display: flex;
@@ -553,12 +671,104 @@
       <h2 class="panel-title">Vision</h2>
       <p class="panel-subtitle">The big idea — what Bounce stands for and why it exists.</p>
     </div>
-    <div class="coming-soon">
-      <div class="coming-soon-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
-      </div>
-      <div class="coming-soon-title">Coming soon</div>
-      <div class="coming-soon-text">Drop the vision statement, mission, and positioning here as it comes together.</div>
+
+    <div class="vision-content">
+
+      <section class="vision-section">
+        <h3 class="vision-h">Fun stats I came across</h3>
+        <p class="vision-lead">(which you've probably already know)</p>
+        <ul class="vision-list">
+          <li>Mercari's 2023 Reuse Report estimated that American households are sitting on <strong>21.1B unused items, worth $559.8B</strong>, or about <strong>$4,267 per household</strong>. It also found that 2.9B usable items, worth $76.3B, were thrown away or recycled despite being fit for resale.</li>
+          <li>Mercari's family resale report found American households have <strong>272.6M unused kids' and baby items, worth $13B</strong>, and that the top storage places are closets, garages, and basements. It also found 38.4% of parents keep unused kids' and baby items for sentimental reasons, while parents sell to earn extra cash and declutter.</li>
+          <li>The biggest issue with most resale sites in the reselling community is people who ask for phone numbers, passwords, verification codes, suspicious links, off-platform payments, fake/stolen items, no-shows, rude messages, and harassment. OfferUp also specifically warns about fake links to "get paid" or "verify your info," and verification-code scams. WIRED reported that scams are common across selling platforms and cited survey data that <strong>62% of U.S. respondents had encountered a scam on Facebook</strong>.</li>
+          <li>eBay's 2025 Recommerce Report frames recommerce as mainstream and cross-generational, with <strong>nearly 9 in 10 surveyed global consumers and eBay sellers</strong> planning to maintain or increase pre-loved spending; it identifies the core drivers as passion, purpose, and financial practicality.</li>
+          <li>Mercari estimated that <strong>2.9B products fit for sale were thrown away or recycled in 2022, worth $76.3B</strong>. eBay also reports that 68% of surveyed consumers feel good about giving items a second life, and frames recommerce as joyful, expressive, and community-oriented in addition to financial.</li>
+          <li>OfferUp's 2025 report says <strong>93% of shoppers bought at least one pre-owned item in the past year</strong>, and 54% also sold a secondhand item. It also says the U.S. recommerce market is projected to reach <strong>$306.5B by 2030</strong>, with 75% of resale happening outside apparel.</li>
+        </ul>
+      </section>
+
+      <section class="vision-section">
+        <h3 class="vision-h">Thoughts on your biggest customer segments</h3>
+        <ul class="vision-list">
+          <li>
+            <span class="label">[Obvious] Busy people with unused goods…</span>
+            <ul>
+              <li>They have stuff, limited time, and enough disposable income that they will pay a premium to avoid hassle.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="label">Parents with outgrown kids' items</span>
+            <ul>
+              <li>High frequency, high clutter, clear emotional trigger, strong need for needing someone else to handle busy work.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="label">Moving / life-transition users</span>
+            <ul>
+              <li>People moving!</li>
+              <li>Have end of the month promotions!!</li>
+            </ul>
+          </li>
+          <li>
+            <span class="label">People who want to donate and do no work!</span>
+            <ul>
+              <li>Right now donating still requires looking something up. If selling and donating is in the same place with the same amount of no work, it's done.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="vision-section highlight">
+        <h3 class="vision-h"><span class="accent">★</span> Big idea!</h3>
+        <ul class="vision-list">
+          <li>
+            <span class="label">For anything that doesn't hit a monetary threshold, you should donate!!!</span>
+            <ul>
+              <li>For users: they could see something like <em>"estimated value: $4… This product might be difficult to sell, would you like to donate it?"</em></li>
+            </ul>
+          </li>
+          <li>
+            <span class="label">Also btw, there might be a cool tax/receipt play here you can offer.</span>
+            <ul>
+              <li>For everything that someone's donated you can assess/confirm the value, then provide them with a receipt that is usable in taxes.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="label">This is big for so many reasons for the brand</span>
+            <ul>
+              <li>"$x millions donated last year."</li>
+              <li>Partnerships, and charities that would pick up goods for free!</li>
+              <li>Do good grants.</li>
+              <li>PLUS it solves the problem of someone taking a photo of something that isn't valuable enough for you to sell. Now you have something to show them instead of "this item is too cheap to sell."</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="vision-section">
+        <h3 class="vision-h">Craigslist</h3>
+        <p>You already know I think craigslist is a dangerous platform to rely a large part of your business on… BUT if you do solve all the Craigslist problems, then you'll have solved a giant barrier to entry for people, bypassing the buying/selling need for business interactions between strangers. Identified as <em>"the worst part of peer-to-peer selling."</em></p>
+        <div class="vision-sub-label">Issues to combat using craigslist for local sales</div>
+        <ul class="vision-list">
+          <li>Lowballing, ghosting, no-shows, rude messages, endless questions, fake interest.</li>
+          <li>Fake payment links, verification-code scams, off-platform payment requests, suspicious accounts, stolen/fake goods, and stranger-meetup anxiety.</li>
+          <li>Bad UI…</li>
+        </ul>
+      </section>
+
+      <section class="vision-section question">
+        <h3 class="vision-h"><span class="accent">?</span> Brandon question: how do you transfer cash to people…?</h3>
+        <ul class="vision-list">
+          <li>
+            <span class="label">I think a big line you can state is:</span>
+            <ul>
+              <li>We will never ask for your credit card…</li>
+            </ul>
+          </li>
+          <li>Also any penalties for listing something for sale then changing your mind at some point and pulling out…?</li>
+        </ul>
+      </section>
+
     </div>
   </section>
 
