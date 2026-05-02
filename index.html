@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bounce — Color & Type Shortlist</title>
-  <meta name="description" content="11 color palette and typography directions for the Bounce rebrand.">
-  <meta property="og:title" content="Bounce — Color & Type Shortlist">
-  <meta property="og:description" content="11 color palette and typography directions for the Bounce rebrand.">
+  <title>Brandon's Brand Whiteboard — Bounce</title>
+  <meta name="description" content="A working whiteboard for the Bounce rebrand: vision, identity, logo, type, color, web, and app.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=Figtree:wght@400;600;700&family=Commissioner:wght@400;600;700&family=Literata:wght@400;500;600&family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,281 +12,494 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --bg: #1C1917;
+      --surface: #292524;
+      --surface-2: #34302d;
+      --border: #44403C;
+      --border-strong: #57534E;
+      --text: #FAFAF9;
+      --text-dim: #A8A29E;
+      --text-mute: #78716C;
+      --primary: #F59E0B;
+      --warn: #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      background: #1C1917;
-      color: #FAFAF9;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
 
     /* ── Header ─────────────────────────────────── */
-    header {
+    header.site {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 64px 32px 40px;
+      padding: 56px 32px 16px;
     }
 
-    .logo-row {
+    .wordmark {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .wordmark .u {
+      color: var(--primary);
+      transition: color 0.2s;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 15px;
+      color: var(--text-dim);
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Tabs ─────────────────────────────────── */
+    nav.tabs {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 32px 0;
+      border-bottom: 1px solid var(--border);
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav.tabs::-webkit-scrollbar { display: none; }
+
+    .tab {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 16px;
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      transition: color 0.15s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active {
+      color: var(--text);
+      border-bottom-color: var(--primary);
     }
 
-    .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #D4941A 0%, #E8722A 100%);
+    /* ── Tab content ──────────────────────────── */
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px 32px 96px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadein 0.2s ease-out; }
+    @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+    .panel-head { margin-bottom: 24px; }
+    .panel-title {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .panel-subtitle {
+      color: var(--text-dim);
+      font-size: 15px;
+      max-width: 640px;
+    }
+
+    /* ── Coming soon ──────────────────────────── */
+    .coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px;
+      background: var(--surface);
+      border: 1px dashed var(--border-strong);
+      border-radius: 16px;
+      min-height: 320px;
+    }
+    .coming-soon-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 22px;
-      color: #FFF;
-      font-weight: 400;
+      margin-bottom: 20px;
+      color: var(--primary);
+      transition: color 0.2s;
     }
-
-    .logo-text {
-      font-family: 'Space Mono', monospace;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #A8A29E;
-    }
-
-    header h1 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 16px;
-      max-width: 600px;
-    }
-
-    header h1 span {
-      background: linear-gradient(135deg, #D4941A 0%, #E8722A 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    header p {
-      font-size: 16px;
-      color: #78716C;
-      max-width: 640px;
-      line-height: 1.7;
-    }
-
-    .header-meta {
-      display: flex;
-      gap: 24px;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid #292524;
-      flex-wrap: wrap;
-    }
-
-    .header-meta-item {
-      font-size: 13px;
-      color: #57534E;
-    }
-
-    .header-meta-item strong {
-      color: #A8A29E;
+    .coming-soon-icon svg { width: 24px; height: 24px; }
+    .coming-soon-title {
+      font-size: 18px;
       font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .coming-soon-text {
+      color: var(--text-dim);
+      font-size: 14px;
+      max-width: 380px;
     }
 
-    /* ── Grid ───────────────────────────────────── */
-    .grid {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 16px 32px 120px;
+    /* ── Logo tab (mascots) ────────────────── */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .search {
+      flex: 1 1 280px;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search:focus { border-color: var(--primary); }
+    .search::placeholder { color: var(--text-dim); }
+
+    .filters {
+      display: flex;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .filter-btn:hover { color: var(--text); }
+    .filter-btn.active {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+    .count { color: var(--text-dim); font-size: 13px; margin-left: auto; }
+
+    .mascot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .mascot-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.15s;
+    }
+    .mascot-card:hover { border-color: var(--border-strong); }
+
+    .image-wrap {
+      position: relative;
+      align-self: center;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 180px;
+      background: var(--surface-2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+    .image-wrap img {
+      max-width: 70%;
+      max-height: 70%;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .maximize-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(28, 25, 23, 0.7);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s, background 0.15s;
+      backdrop-filter: blur(4px);
+    }
+    .image-wrap:hover .maximize-btn,
+    .maximize-btn:focus-visible { opacity: 1; }
+    .maximize-btn:hover { background: rgba(28, 25, 23, 0.9); }
+    .maximize-btn svg { width: 16px; height: 16px; }
+
+    .mascot-card .title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+    .mascot-card .desc { font-size: 14px; color: var(--text-dim); line-height: 1.45; }
+    .mascot-card .meta {
+      margin-top: auto;
+      display: flex; flex-direction: column; gap: 8px; padding-top: 8px;
+    }
+    .badge {
+      align-self: flex-start;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 999px; border: 1px solid;
+    }
+    .badge-high {
+      color: #84CC16;
+      border-color: rgba(132, 204, 22, 0.4);
+      background: rgba(132, 204, 22, 0.08);
+    }
+    .badge-medium {
+      color: var(--warn);
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.08);
+    }
+    .mascot-notes { font-size: 12px; color: var(--text-dim); font-style: italic; line-height: 1.4; }
+    .empty { text-align: center; padding: 80px 20px; color: var(--text-dim); }
+
+    /* ── Lightbox ─────────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 32px; z-index: 200;
+      animation: fade 0.15s ease-out;
+    }
+    .lightbox.open { display: flex; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .lightbox-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 560px;
+      width: 100%;
+      display: flex; flex-direction: column;
+      gap: 16px; align-items: center;
+      position: relative;
+    }
+    .lightbox-img {
+      width: 320px; height: 320px; max-width: 100%;
+      background: var(--surface-2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .lightbox-img img { max-width: 100%; max-height: 100%; }
+    .lightbox-title { font-size: 22px; font-weight: 700; text-align: center; }
+    .lightbox-desc { font-size: 14px; color: var(--text-dim); text-align: center; max-width: 440px; }
+    .close-btn {
+      position: absolute; top: 12px; right: 12px;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .close-btn:hover { background: var(--border); }
+    .close-btn svg { width: 18px; height: 18px; }
+
+    /* ── Color tab ─────────────────────────────────── */
+    .concept-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
-
-    /* ── Card ───────────────────────────────────── */
-    .card {
+    .concept {
       border-radius: 20px;
-      padding: 40px;
+      padding: 36px;
       position: relative;
       transition: transform 0.2s ease;
     }
-
-    .card:hover { transform: translateY(-2px); }
-
-    .card-top {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 6px;
-      flex-wrap: wrap;
+    .concept:hover { transform: translateY(-2px); }
+    .concept-top {
+      display: flex; align-items: baseline;
+      gap: 10px; margin-bottom: 6px; flex-wrap: wrap;
     }
-
-    .card-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      opacity: 0.35;
-    }
-
-    .card-name {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-
-    .card-round {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+    .concept-num { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; opacity: 0.35; }
+    .concept-name { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+    .concept-round {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
       text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 100px;
-      border: 1px solid currentColor;
-      opacity: 0.3;
+      padding: 3px 10px; border-radius: 100px;
+      border: 1px solid currentColor; opacity: 0.3;
       margin-left: auto;
     }
-
-    .card-tagline {
-      font-size: 14px;
-      opacity: 0.5;
-      margin-bottom: 32px;
-      font-style: italic;
-    }
-
-    .card-wordmark {
-      font-size: 64px;
-      line-height: 1.0;
-      letter-spacing: -2px;
-      margin-bottom: 32px;
-    }
-
-    .swatches {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .swatch {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .swatch-block {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      border: 1px solid rgba(128,128,128,0.12);
-    }
-
-    .swatch-hex {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      opacity: 0.35;
-      letter-spacing: -0.3px;
-    }
-
-    .swatch-label {
-      font-size: 9px;
-      opacity: 0.25;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .card-headline {
-      font-size: 32px;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-    }
-
-    .card-price {
-      font-size: 48px;
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      margin-bottom: 20px;
-    }
-
-    .card-body {
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 28px;
-      opacity: 0.8;
-      max-width: 500px;
-    }
-
-    .card-btn {
-      display: inline-block;
-      padding: 16px 32px;
-      border-radius: 12px;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: default;
-      letter-spacing: -0.2px;
-      margin-bottom: 12px;
-    }
-
-    .card-btn-outline {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 12px;
-      border: 2px solid;
-      background: transparent;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: default;
-      letter-spacing: -0.2px;
-      margin-bottom: 32px;
-      margin-left: 8px;
-      opacity: 0.6;
-    }
-
-    .card-specimen {
-      font-size: 20px;
-      opacity: 0.25;
-      margin-bottom: 28px;
-      letter-spacing: 0.5px;
-    }
-
-    .card-meta {
+    .concept-tag { font-size: 14px; opacity: 0.5; margin-bottom: 28px; font-style: italic; }
+    .concept-wordmark { font-size: 56px; line-height: 1.0; letter-spacing: -2px; margin-bottom: 28px; }
+    .swatches { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+    .swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .swatch-block { width: 52px; height: 52px; border-radius: 12px; border: 1px solid rgba(128,128,128,0.12); }
+    .swatch-hex { font-family: 'Space Mono', monospace; font-size: 9px; opacity: 0.35; letter-spacing: -0.3px; }
+    .swatch-label { font-size: 9px; opacity: 0.25; text-transform: uppercase; letter-spacing: 0.5px; }
+    .concept-headline { font-size: 28px; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .concept-body { font-size: 15px; line-height: 1.7; margin-bottom: 24px; opacity: 0.8; max-width: 500px; }
+    .concept-msg {
+      font-size: 13px; font-style: italic; opacity: 0.55; line-height: 1.6;
       border-top: 1px solid rgba(128,128,128,0.12);
-      padding-top: 20px;
+      padding-top: 16px;
+    }
+    .apply-btn {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(0,0,0,0.06);
+      border: 1px solid currentColor;
+      color: inherit;
+      font: inherit; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 6px 10px; border-radius: 999px;
+      cursor: pointer; opacity: 0.5;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .apply-btn:hover { opacity: 1; background: rgba(0,0,0,0.12); }
+
+    /* ── Type tab ─────────────────────────────────── */
+    .type-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
     }
-
-    .card-meta-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      opacity: 0.3;
-      margin-bottom: 2px;
+    .type-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 16px;
     }
-
-    .card-meta-value {
-      font-size: 13px;
-      font-family: 'Space Mono', monospace;
-      opacity: 0.5;
+    .type-card-head {
+      display: flex; align-items: baseline; gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
     }
+    .type-card-num { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--text-mute); }
+    .type-card-name { font-size: 16px; font-weight: 600; }
+    .type-card-round {
+      margin-left: auto;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      color: var(--text-mute);
+    }
+    .type-display-sample { font-size: 44px; line-height: 1.05; letter-spacing: -1.5px; color: var(--primary); }
+    .type-body-sample { font-size: 15px; line-height: 1.7; color: var(--text-dim); }
+    .type-specs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .type-spec-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-mute); margin-bottom: 2px; }
+    .type-spec-value { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text-dim); }
 
-    .card-meta-msg {
-      grid-column: 1 / -1;
-      font-size: 13px;
-      font-style: italic;
-      opacity: 0.45;
-      line-height: 1.6;
-      margin-top: 4px;
+    /* ── Tweaks panel ─────────────────────────── */
+    .tweaks-toggle {
+      position: fixed; bottom: 20px; right: 20px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 50;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .tweaks-toggle:hover { transform: scale(1.05); border-color: var(--primary); }
+    .tweaks-toggle svg { width: 20px; height: 20px; }
+
+    .tweaks-panel {
+      position: fixed; bottom: 80px; right: 20px;
+      width: 280px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      z-index: 50;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      transform: translateY(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .tweaks-panel.open { opacity: 1; transform: none; pointer-events: auto; }
+    .tweaks-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .tweaks-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
+    .tweaks-close {
+      background: transparent; border: none; color: var(--text-dim);
+      cursor: pointer; padding: 4px; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tweaks-close:hover { color: var(--text); }
+    .tweaks-close svg { width: 14px; height: 14px; }
+    .tweaks-section { margin-top: 14px; }
+    .tweaks-label {
+      font-size: 11px; color: var(--text-mute);
+      margin-bottom: 8px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .tweaks-current { color: var(--text-dim); }
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+    .swatch-pick {
+      width: 100%; aspect-ratio: 1 / 1;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.1s, border-color 0.15s;
+      position: relative;
+    }
+    .swatch-pick:hover { transform: scale(1.08); }
+    .swatch-pick.active {
+      border-color: var(--text);
+      box-shadow: 0 0 0 2px var(--surface);
     }
 
     /* ── Footer ─────────────────────────────────── */
@@ -301,209 +512,456 @@
       font-size: 13px;
     }
 
-    footer a { color: #78716C; }
-
-    /* ── Responsive ─────────────────────────────── */
     @media (max-width: 1024px) {
-      .grid { grid-template-columns: 1fr; max-width: 720px; }
+      .concept-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 600px) {
-      header { padding: 40px 20px 28px; }
-      header h1 { font-size: 32px; }
-      .grid { padding: 8px 20px 80px; gap: 20px; }
-      .card { padding: 28px; }
-      .card-wordmark { font-size: 44px; letter-spacing: -1px; }
-      .card-headline { font-size: 26px; }
-      .card-price { font-size: 36px; }
-      .card-meta { grid-template-columns: 1fr; }
-      footer { padding: 0 20px 48px; }
+      header.site { padding: 36px 20px 12px; }
+      nav.tabs { padding: 16px 20px 0; }
+      main { padding: 24px 20px 80px; }
+      .concept { padding: 28px; }
+      .concept-wordmark { font-size: 44px; letter-spacing: -1px; }
+      .lightbox { padding: 16px; }
+      .lightbox-content { padding: 24px 20px; }
+      .lightbox-img { width: 240px; height: 240px; }
+      .tweaks-panel { width: calc(100vw - 40px); }
+      .swatch-grid { grid-template-columns: repeat(6, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-row">
-    <div class="logo-mark">B</div>
-    <div class="logo-text">Bounce Rebrand</div>
-  </div>
-  <h1>Color & Type <span>Shortlist</span></h1>
-  <p>
-    11 palette + typography directions for the Bounce rebrand. Each card shows the palette and fonts in context with real brand copy. Narrowed from 70 initial explorations.
-  </p>
-  <div class="header-meta">
-    <div class="header-meta-item"><strong>Project</strong> &nbsp;Bounce Rebrand</div>
-    <div class="header-meta-item"><strong>Phase</strong> &nbsp;Color & Type Exploration</div>
-    <div class="header-meta-item"><strong>Concepts</strong> &nbsp;11 of 70</div>
-  </div>
+<header class="site">
+  <div class="wordmark">Bo<span class="u">u</span>nce</div>
+  <div class="tagline">Brandon's Brand whiteboard</div>
 </header>
 
-<main class="grid" id="grid"></main>
+<nav class="tabs" role="tablist" id="tabs">
+  <button class="tab" role="tab" data-tab="vision">Vision</button>
+  <button class="tab" role="tab" data-tab="identity">Identity</button>
+  <button class="tab" role="tab" data-tab="logo">Logo</button>
+  <button class="tab" role="tab" data-tab="type">Type</button>
+  <button class="tab" role="tab" data-tab="color">Color</button>
+  <button class="tab" role="tab" data-tab="web">Web design</button>
+  <button class="tab" role="tab" data-tab="app">App design</button>
+</nav>
+
+<main>
+  <!-- VISION -->
+  <section id="panel-vision" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">Vision</h2>
+      <p class="panel-subtitle">The big idea — what Bounce stands for and why it exists.</p>
+    </div>
+    <div class="coming-soon">
+      <div class="coming-soon-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+      </div>
+      <div class="coming-soon-title">Coming soon</div>
+      <div class="coming-soon-text">Drop the vision statement, mission, and positioning here as it comes together.</div>
+    </div>
+  </section>
+
+  <!-- IDENTITY -->
+  <section id="panel-identity" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">Identity</h2>
+      <p class="panel-subtitle">Voice, personality, and how Bounce shows up in the world.</p>
+    </div>
+    <div class="coming-soon">
+      <div class="coming-soon-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+      </div>
+      <div class="coming-soon-title">Coming soon</div>
+      <div class="coming-soon-text">Brand personality, tone of voice, and identity principles will land here.</div>
+    </div>
+  </section>
+
+  <!-- LOGO (mascots) -->
+  <section id="panel-logo" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">Logo</h2>
+      <p class="panel-subtitle">Companies with animal or creature mascots in their app icon or logo design. Click any image to maximize.</p>
+    </div>
+    <div class="controls">
+      <input type="search" class="search" id="search" placeholder="Search by company, description, or notes…" aria-label="Search">
+      <div class="filters" role="group" aria-label="Filter by confidence">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="High">High</button>
+        <button class="filter-btn" data-filter="Medium">Medium</button>
+      </div>
+      <div class="count" id="count"></div>
+    </div>
+    <div class="mascot-grid" id="mascot-grid"></div>
+    <div class="empty" id="mascot-empty" hidden>No matches.</div>
+  </section>
+
+  <!-- TYPE -->
+  <section id="panel-type" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">Type</h2>
+      <p class="panel-subtitle">11 typography pairings — display + body — from the rebrand exploration.</p>
+    </div>
+    <div class="type-grid" id="type-grid"></div>
+  </section>
+
+  <!-- COLOR -->
+  <section id="panel-color" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">Color</h2>
+      <p class="panel-subtitle">11 palette + typography concepts shown in context. Click <em>Apply</em> on any card to make its accent the site primary.</p>
+    </div>
+    <div class="concept-grid" id="concept-grid"></div>
+  </section>
+
+  <!-- WEB DESIGN -->
+  <section id="panel-web" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">Web design</h2>
+      <p class="panel-subtitle">Site layout, components, and page-level direction for bounce.com.</p>
+    </div>
+    <div class="coming-soon">
+      <div class="coming-soon-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="coming-soon-title">Coming soon</div>
+      <div class="coming-soon-text">Wireframes, hero treatments, and key page layouts will live here.</div>
+    </div>
+  </section>
+
+  <!-- APP DESIGN -->
+  <section id="panel-app" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2 class="panel-title">App design</h2>
+      <p class="panel-subtitle">Mobile UX, screens, and interaction patterns for the Bounce app.</p>
+    </div>
+    <div class="coming-soon">
+      <div class="coming-soon-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/></svg>
+      </div>
+      <div class="coming-soon-title">Coming soon</div>
+      <div class="coming-soon-text">App icon, onboarding, and key screen flows will land here.</div>
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+  <div class="lightbox-content">
+    <button class="close-btn" id="close-btn" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+    <div class="lightbox-img"><img id="lightbox-img" alt=""></div>
+    <div class="lightbox-title" id="lightbox-title"></div>
+    <div class="lightbox-desc" id="lightbox-desc"></div>
+  </div>
+</div>
+
+<!-- Tweaks -->
+<button class="tweaks-toggle" id="tweaks-toggle" aria-label="Open theme tweaks" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9 1.65 1.65 0 0 0 4.27 7.18l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>
+</button>
+<div class="tweaks-panel" id="tweaks-panel" role="dialog" aria-label="Theme tweaks">
+  <div class="tweaks-head">
+    <span class="tweaks-title">Tweaks</span>
+    <button class="tweaks-close" id="tweaks-close" aria-label="Close tweaks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+  </div>
+  <div class="tweaks-section">
+    <div class="tweaks-label">
+      <span>Primary color</span>
+      <span class="tweaks-current" id="tweaks-current"></span>
+    </div>
+    <div class="swatch-grid" id="palette-swatches"></div>
+  </div>
+</div>
 
 <footer>
-  <p>Bounce Rebrand &mdash; Color & Type Shortlist &mdash; April 2026</p>
+  <p>Brandon's Brand Whiteboard &mdash; Bounce Rebrand</p>
 </footer>
 
+<script id="mascot-data" type="application/json">[{"company":"Duolingo","description":"Duo — green owl mascot used as the app/icon face.","image_url":"https://www.google.com/s2/favicons?domain=duolingo.com&sz=128","confidence":"High","notes":""},{"company":"DuckDuckGo","description":"Duck head mascot/logo.","image_url":"https://www.google.com/s2/favicons?domain=duckduckgo.com&sz=128","confidence":"High","notes":""},{"company":"Hootsuite","description":"Owly — owl mascot/brand icon.","image_url":"https://www.google.com/s2/favicons?domain=hootsuite.com&sz=128","confidence":"High","notes":""},{"company":"Puffin Browser","description":"Puffin bird mascot/logo.","image_url":"https://www.google.com/s2/favicons?domain=puffin.com&sz=128","confidence":"Medium","notes":"Icon/logo can vary by platform, country, or seasonal app update."},{"company":"Bear","description":"Bear head icon for the notes/writing app.","image_url":"https://www.google.com/s2/favicons?domain=bear.app&sz=128","confidence":"High","notes":""},{"company":"Chick-fil-A","description":"Chicken/rooster-like C mark.","image_url":"https://www.google.com/s2/favicons?domain=chick-fil-a.com&sz=128","confidence":"High","notes":""},{"company":"Evernote","description":"Elephant head logo.","image_url":"https://www.google.com/s2/favicons?domain=evernote.com&sz=128","confidence":"High","notes":""},{"company":"Mailchimp","description":"Freddie the chimp mascot; current app icon usage may vary.","image_url":"https://www.google.com/s2/favicons?domain=mailchimp.com&sz=128","confidence":"Medium","notes":"Icon/logo can vary by platform, country, or seasonal app update."}]</script>
+<script id="concept-data" type="application/json">[{"n":"13","name":"Mineral","tag":"Grounded and real","bg":"#F0ECE3","text":"#3D4F5F","a1":"#6B8F71","a2":"#C4956A","a3":"#D8D2C8","df":"Plus Jakarta Sans","bf":"Work Sans","dw":700,"bw":400,"round":"Round 1","msg":"Muted sage and warm copper feel organic and trustworthy. Neither loud nor boring — just confident. Works across gender lines. Says 'grounded, thoughtful, premium.'"},{"n":"16","name":"Marigold","tag":"Bright trust","bg":"#FFFAF0","text":"#1A1A2E","a1":"#F59E0B","a2":"#2D4A7A","a3":"#F0E8D4","df":"Figtree","bf":"Work Sans","dw":700,"bw":400,"round":"Round 1","msg":"Amber-gold says 'value' and 'warmth' simultaneously. Navy text adds authority. The pairing is optimistic but grounded. Figtree is friendly and modern. Says 'easy money, good experience.'"},{"n":"17","name":"Terra","tag":"Honest ground","bg":"#F5EDE4","text":"#3A2D20","a1":"#B85C38","a2":"#4A7C59","a3":"#E0D4C6","df":"Commissioner","bf":"Literata","dw":700,"bw":400,"round":"Round 1","msg":"Burnt sienna and forest green are the palette of 'home.' Earthy without being rustic. Literata body text adds editorial credibility. Says 'honest service, real people, no gimmicks.'"},{"n":"20","name":"Honey","tag":"Sweet value","bg":"#FFF8E7","text":"#3D2A14","a1":"#D4941A","a2":"#8B5A2B","a3":"#F0E4C8","df":"DM Serif Display","bf":"DM Sans","dw":400,"bw":400,"round":"Round 1","msg":"Deep amber is the color of value — liquid gold. Monochromatic warmth feels rich, not cheap. DM Serif Display is editorial and authoritative. Says 'you're sitting on something valuable.'"},{"n":"31","name":"Buttercream","tag":"Playful warmth","bg":"#FFF9EE","text":"#3D2E1C","a1":"#D4941A","a2":"#6B5840","a3":"#F0E6D0","df":"Fraunces","bf":"Nunito Sans","dw":700,"bw":400,"round":"Round 2","msg":"Fraunces reclaimed — paired with rounded Nunito Sans, it reads warm-playful rather than indie-craft. Golden amber is pure value. Monochromatic warmth feels cohesive and ownable."},{"n":"43","name":"Clementine","tag":"Fresh personality","bg":"#FFFAF2","text":"#1A1A1A","a1":"#E8722A","a2":"#3D5A4A","a3":"#F0E8D8","df":"Gabarito","bf":"DM Sans","dw":700,"bw":400,"round":"Round 2","msg":"Bright warm orange with sage green balance. Gabarito is a newer face with real character — warm geometric with slightly squarish forms. Sage prevents overheating. Says 'modern, lively, inviting.'"},{"n":"46","name":"Pistachio","tag":"Calm freshness","bg":"#F4F0E4","text":"#2A2E24","a1":"#6B8B5A","a2":"#B8956B","a3":"#E4DED0","df":"Nunito","bf":"Crimson Pro","dw":800,"bw":400,"round":"Round 2","msg":"Soft sage green + warm tan. Nunito headlines feel approachable and substantial. Crimson Pro body is warm editorial serif — an inverted pairing that gives personality up top and credibility underneath."},{"n":"48","name":"Biscuit","tag":"Bold heritage","bg":"#FAF4EA","text":"#3A2E22","a1":"#C48B3F","a2":"#7B6B5A","a3":"#EEE4D6","df":"Zilla Slab","bf":"Raleway","dw":700,"bw":400,"round":"Round 2","msg":"Warm gold monochrome. Zilla Slab has real character, weight, and warmth. Bold enough to command attention, approachable enough to invite you in. Raleway body is elegant thin sans."},{"n":"57","name":"Neon Picnic","tag":"Sign painting meets sunshine","bg":"#FFFFF2","text":"#1A1A1A","a1":"#E85D4A","a2":"#6B9B2A","a3":"#F0ECD8","df":"Bungee","bf":"Work Sans","dw":400,"bw":400,"round":"Round 3","msg":"Bungee was built for signage — designed to be read at speed, from any angle. Coral + lime green is a color combo that shouldn't work but absolutely does. Fun as confidence — bold without asking permission."},{"n":"63","name":"Jukebox","tag":"Diner with good taste","bg":"#FFF4EA","text":"#2A1818","a1":"#C43A3A","a2":"#C4941A","a3":"#F0E0D0","df":"Josefin Sans","bf":"Work Sans","dw":700,"bw":400,"round":"Round 3","msg":"Josefin Sans has vintage geometric proportions with a wink — tall, elegant, playful. It references Art Deco without cosplaying. Red + gold is classic Americana warmth. Fun with a sense of history."},{"n":"67","name":"Greenhouse","tag":"Modern geometry, living warmth","bg":"#F4F2E8","text":"#1A2A1A","a1":"#4A8A4A","a2":"#B87042","a3":"#E4E0D2","df":"Urbanist","bf":"Crimson Pro","dw":700,"bw":400,"round":"Round 3","msg":"Urbanist is geometric sans with subtle rounded touches — clean enough for tech, warm enough for home. Green + sienna is living warmth. Crimson Pro body adds editorial credibility. Fresh, not cold."}]</script>
+
 <script>
-const concepts = [
-  {
-    n:"13", name:"Mineral", tag:"Grounded and real",
-    bg:"#F0ECE3", text:"#3D4F5F", a1:"#6B8F71", a2:"#C4956A", a3:"#D8D2C8",
-    df:"Plus Jakarta Sans", bf:"Work Sans", dw:700, bw:400,
-    round:"Round 1",
-    msg:"Muted sage and warm copper feel organic and trustworthy. Neither loud nor boring — just confident. Works across gender lines. Says 'grounded, thoughtful, premium.'"
-  },
-  {
-    n:"16", name:"Marigold", tag:"Bright trust",
-    bg:"#FFFAF0", text:"#1A1A2E", a1:"#F59E0B", a2:"#2D4A7A", a3:"#F0E8D4",
-    df:"Figtree", bf:"Work Sans", dw:700, bw:400,
-    round:"Round 1",
-    msg:"Amber-gold says 'value' and 'warmth' simultaneously. Navy text adds authority. The pairing is optimistic but grounded. Figtree is friendly and modern. Says 'easy money, good experience.'"
-  },
-  {
-    n:"17", name:"Terra", tag:"Honest ground",
-    bg:"#F5EDE4", text:"#3A2D20", a1:"#B85C38", a2:"#4A7C59", a3:"#E0D4C6",
-    df:"Commissioner", bf:"Literata", dw:700, bw:400,
-    round:"Round 1",
-    msg:"Burnt sienna and forest green are the palette of 'home.' Earthy without being rustic. Literata body text adds editorial credibility. Says 'honest service, real people, no gimmicks.'"
-  },
-  {
-    n:"20", name:"Honey", tag:"Sweet value",
-    bg:"#FFF8E7", text:"#3D2A14", a1:"#D4941A", a2:"#8B5A2B", a3:"#F0E4C8",
-    df:"DM Serif Display", bf:"DM Sans", dw:400, bw:400,
-    round:"Round 1",
-    msg:"Deep amber is the color of value — liquid gold. Monochromatic warmth feels rich, not cheap. DM Serif Display is editorial and authoritative. Says 'you're sitting on something valuable.'"
-  },
-  {
-    n:"31", name:"Buttercream", tag:"Playful warmth",
-    bg:"#FFF9EE", text:"#3D2E1C", a1:"#D4941A", a2:"#6B5840", a3:"#F0E6D0",
-    df:"Fraunces", bf:"Nunito Sans", dw:700, bw:400,
-    round:"Round 2",
-    msg:"Fraunces reclaimed — paired with rounded Nunito Sans, it reads warm-playful rather than indie-craft. Golden amber is pure value. Monochromatic warmth feels cohesive and ownable."
-  },
-  {
-    n:"43", name:"Clementine", tag:"Fresh personality",
-    bg:"#FFFAF2", text:"#1A1A1A", a1:"#E8722A", a2:"#3D5A4A", a3:"#F0E8D8",
-    df:"Gabarito", bf:"DM Sans", dw:700, bw:400,
-    round:"Round 2",
-    msg:"Bright warm orange with sage green balance. Gabarito is a newer face with real character — warm geometric with slightly squarish forms. Sage prevents overheating. Says 'modern, lively, inviting.'"
-  },
-  {
-    n:"46", name:"Pistachio", tag:"Calm freshness",
-    bg:"#F4F0E4", text:"#2A2E24", a1:"#6B8B5A", a2:"#B8956B", a3:"#E4DED0",
-    df:"Nunito", bf:"Crimson Pro", dw:800, bw:400,
-    round:"Round 2",
-    msg:"Soft sage green + warm tan. Nunito headlines feel approachable and substantial. Crimson Pro body is warm editorial serif — an inverted pairing that gives personality up top and credibility underneath."
-  },
-  {
-    n:"48", name:"Biscuit", tag:"Bold heritage",
-    bg:"#FAF4EA", text:"#3A2E22", a1:"#C48B3F", a2:"#7B6B5A", a3:"#EEE4D6",
-    df:"Zilla Slab", bf:"Raleway", dw:700, bw:400,
-    round:"Round 2",
-    msg:"Warm gold monochrome. Zilla Slab has real character, weight, and warmth. Bold enough to command attention, approachable enough to invite you in. Raleway body is elegant thin sans."
-  },
-  {
-    n:"57", name:"Neon Picnic", tag:"Sign painting meets sunshine",
-    bg:"#FFFFF2", text:"#1A1A1A", a1:"#E85D4A", a2:"#6B9B2A", a3:"#F0ECD8",
-    df:"Bungee", bf:"Work Sans", dw:400, bw:400,
-    round:"Round 3",
-    msg:"Bungee was built for signage — designed to be read at speed, from any angle. Coral + lime green is a color combo that shouldn't work but absolutely does. Fun as confidence — bold without asking permission."
-  },
-  {
-    n:"63", name:"Jukebox", tag:"Diner with good taste",
-    bg:"#FFF4EA", text:"#2A1818", a1:"#C43A3A", a2:"#C4941A", a3:"#F0E0D0",
-    df:"Josefin Sans", bf:"Work Sans", dw:700, bw:400,
-    round:"Round 3",
-    msg:"Josefin Sans has vintage geometric proportions with a wink — tall, elegant, playful. It references Art Deco without cosplaying. Red + gold is classic Americana warmth. Fun with a sense of history."
-  },
-  {
-    n:"67", name:"Greenhouse", tag:"Modern geometry, living warmth",
-    bg:"#F4F2E8", text:"#1A2A1A", a1:"#4A8A4A", a2:"#B87042", a3:"#E4E0D2",
-    df:"Urbanist", bf:"Crimson Pro", dw:700, bw:400,
-    round:"Round 3",
-    msg:"Urbanist is geometric sans with subtle rounded touches — clean enough for tech, warm enough for home. Green + sienna is living warmth. Crimson Pro body adds editorial credibility. Fresh, not cold."
+  // ── Data
+  const mascots = JSON.parse(document.getElementById('mascot-data').textContent);
+  const concepts = JSON.parse(document.getElementById('concept-data').textContent);
+
+  // ── Palette options for the Tweaks panel (from concept primary colors)
+  const palettes = concepts.map(c => ({ name: c.name, hex: c.a1 }));
+
+  // ── Theme
+  const STORAGE_KEY = 'bounce-primary';
+  function applyPrimary(hex, name) {
+    document.documentElement.style.setProperty('--primary', hex);
+    localStorage.setItem(STORAGE_KEY, hex);
+    document.getElementById('tweaks-current').textContent = name || '';
+    document.querySelectorAll('.swatch-pick').forEach(s => {
+      s.classList.toggle('active', s.dataset.hex.toLowerCase() === hex.toLowerCase());
+    });
   }
-];
 
-function lum(hex) {
-  const r = parseInt(hex.slice(1,3),16);
-  const g = parseInt(hex.slice(3,5),16);
-  const b = parseInt(hex.slice(5,7),16);
-  return (0.299*r + 0.587*g + 0.114*b) / 255;
-}
+  function renderPaletteSwatches() {
+    const container = document.getElementById('palette-swatches');
+    container.innerHTML = palettes.map(p => `
+      <button class="swatch-pick" data-hex="${p.hex}" data-name="${esc(p.name)}"
+              style="background:${p.hex}" title="${esc(p.name)} — ${p.hex}"
+              aria-label="Set primary to ${esc(p.name)}"></button>
+    `).join('');
+    container.querySelectorAll('.swatch-pick').forEach(btn => {
+      btn.addEventListener('click', () => applyPrimary(btn.dataset.hex, btn.dataset.name));
+    });
+  }
 
-function contrast(hex) {
-  return lum(hex) > 0.55 ? '#1A1A1A' : '#FFFFFF';
-}
+  // ── Tabs
+  const tabButtons = document.querySelectorAll('.tab');
+  const tabIds = ['vision','identity','logo','type','color','web','app'];
 
-const swatchLabels = ['BG','Text','Accent','Secondary','Muted'];
+  function setTab(id) {
+    if (!tabIds.includes(id)) id = 'vision';
+    tabButtons.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+    tabIds.forEach(t => {
+      const panel = document.getElementById('panel-' + t);
+      panel.classList.toggle('active', t === id);
+    });
+    if (location.hash !== '#' + id) {
+      history.replaceState(null, '', '#' + id);
+    }
+  }
 
-function renderCard(c) {
-  const btnBg = c.a1;
-  const btnText = contrast(c.a1);
-  const fb = 'sans-serif';
+  tabButtons.forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+  window.addEventListener('hashchange', () => setTab(location.hash.slice(1)));
 
-  return `
-    <div class="card" style="background:${c.bg}; color:${c.text}">
-      <div class="card-top">
-        <span class="card-num">${c.n}</span>
-        <span class="card-name" style="font-family:'${c.df}',${fb}; font-weight:${c.dw}">${c.name}</span>
-        <span class="card-round">${c.round}</span>
+  // ── Mascot grid
+  const grid = document.getElementById('mascot-grid');
+  const empty = document.getElementById('mascot-empty');
+  const search = document.getElementById('search');
+  const count = document.getElementById('count');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  let activeFilter = 'all';
+
+  function upscale(url, size) { return url.replace(/([?&])sz=\d+/, `$1sz=${size}`); }
+
+  function badgeClass(c) {
+    if (c === 'High') return 'badge badge-high';
+    if (c === 'Medium') return 'badge badge-medium';
+    return 'badge';
+  }
+
+  function renderMascots() {
+    const q = search.value.trim().toLowerCase();
+    const filtered = mascots.filter(d => {
+      if (activeFilter !== 'all' && d.confidence !== activeFilter) return false;
+      if (!q) return true;
+      return (
+        d.company.toLowerCase().includes(q) ||
+        d.description.toLowerCase().includes(q) ||
+        d.notes.toLowerCase().includes(q)
+      );
+    });
+    grid.innerHTML = '';
+    empty.hidden = filtered.length > 0;
+    count.textContent = `${filtered.length} of ${mascots.length}`;
+    for (const d of filtered) {
+      const card = document.createElement('article');
+      card.className = 'mascot-card';
+      const imgUrl = upscale(d.image_url, 128);
+      const bigUrl = upscale(d.image_url, 256);
+      card.innerHTML = `
+        <div class="image-wrap" tabindex="0" role="button" aria-label="Maximize image for ${esc(d.company)}">
+          <img src="${esc(imgUrl)}" alt="${esc(d.company)} icon" loading="lazy" referrerpolicy="no-referrer">
+          <button class="maximize-btn" type="button" aria-label="Maximize">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/>
+            </svg>
+          </button>
+        </div>
+        <div>
+          <div class="title">${esc(d.company)}</div>
+          <div class="desc">${esc(d.description)}</div>
+        </div>
+        <div class="meta">
+          <span class="${badgeClass(d.confidence)}">${esc(d.confidence)}</span>
+          ${d.notes ? `<div class="mascot-notes">${esc(d.notes)}</div>` : ''}
+        </div>
+      `;
+      const wrap = card.querySelector('.image-wrap');
+      const open = () => openLightbox(d, bigUrl);
+      wrap.addEventListener('click', open);
+      wrap.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+      grid.appendChild(card);
+    }
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      renderMascots();
+    });
+  });
+  search.addEventListener('input', renderMascots);
+
+  // ── Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDesc = document.getElementById('lightbox-desc');
+  const closeBtn = document.getElementById('close-btn');
+  let lastFocus = null;
+
+  function openLightbox(d, bigUrl) {
+    lastFocus = document.activeElement;
+    lightboxImg.src = bigUrl;
+    lightboxImg.alt = `${d.company} icon`;
+    lightboxTitle.textContent = d.company;
+    lightboxDesc.textContent = d.description;
+    lightbox.hidden = false;
+    lightbox.classList.add('open');
+    closeBtn.focus();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.hidden = true;
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (lightbox.classList.contains('open')) closeLightbox();
+      else if (tweaksPanel.classList.contains('open')) closeTweaks();
+    }
+  });
+
+  // ── Color tab (concepts)
+  function lum(hex) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return (0.299*r + 0.587*g + 0.114*b) / 255;
+  }
+  const swatchLabels = ['BG','Text','Accent','Secondary','Muted'];
+
+  function renderConcepts() {
+    const container = document.getElementById('concept-grid');
+    container.innerHTML = concepts.map(c => `
+      <div class="concept" style="background:${c.bg}; color:${c.text}">
+        <button class="apply-btn" data-hex="${c.a1}" data-name="${esc(c.name)}">Apply</button>
+        <div class="concept-top">
+          <span class="concept-num">${esc(c.n)}</span>
+          <span class="concept-name" style="font-family:'${esc(c.df)}',sans-serif; font-weight:${c.dw}">${esc(c.name)}</span>
+          <span class="concept-round">${esc(c.round)}</span>
+        </div>
+        <div class="concept-tag" style="font-family:'${esc(c.bf)}',sans-serif; font-weight:${c.bw}">${esc(c.tag)}</div>
+        <div class="concept-wordmark" style="font-family:'${esc(c.df)}',sans-serif; font-weight:${c.dw}; color:${c.a1}">bounce</div>
+        <div class="swatches">
+          ${[c.bg, c.text, c.a1, c.a2, c.a3].map((hex,i) => `
+            <div class="swatch">
+              <div class="swatch-block" style="background:${hex}"></div>
+              <span class="swatch-hex">${hex}</span>
+              <span class="swatch-label">${swatchLabels[i]}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="concept-headline" style="font-family:'${esc(c.df)}',sans-serif; font-weight:${c.dw}">
+          We sell your stuff for you.
+        </div>
+        <p class="concept-body" style="font-family:'${esc(c.bf)}',sans-serif; font-weight:${c.bw}">
+          Photograph it. We handle everything else. No meetups, no haggling, no trips to the post office.
+        </p>
+        <div class="concept-msg">${esc(c.msg)}</div>
       </div>
-      <div class="card-tagline" style="font-family:'${c.bf}',${fb}; font-weight:${c.bw}">${c.tag}</div>
+    `).join('');
+    container.querySelectorAll('.apply-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        applyPrimary(btn.dataset.hex, btn.dataset.name);
+      });
+    });
+  }
 
-      <div class="card-wordmark" style="font-family:'${c.df}',${fb}; font-weight:${c.dw}; color:${c.a1}">bounce</div>
-
-      <div class="swatches">
-        ${[c.bg, c.text, c.a1, c.a2, c.a3].map((hex,i) => `
-          <div class="swatch">
-            <div class="swatch-block" style="background:${hex}"></div>
-            <span class="swatch-hex">${hex}</span>
-            <span class="swatch-label">${swatchLabels[i]}</span>
+  // ── Type tab
+  function renderTypes() {
+    const container = document.getElementById('type-grid');
+    container.innerHTML = concepts.map(c => `
+      <div class="type-card">
+        <div class="type-card-head">
+          <span class="type-card-num">${esc(c.n)}</span>
+          <span class="type-card-name">${esc(c.name)}</span>
+          <span class="type-card-round">${esc(c.round)}</span>
+        </div>
+        <div class="type-display-sample" style="font-family:'${esc(c.df)}',sans-serif; font-weight:${c.dw}">
+          Bounce
+        </div>
+        <p class="type-body-sample" style="font-family:'${esc(c.bf)}',sans-serif; font-weight:${c.bw}">
+          The quick brown fox jumps over the lazy dog. We sell your stuff for you — photograph it, we handle everything else.
+        </p>
+        <div class="type-specs">
+          <div>
+            <div class="type-spec-label">Display</div>
+            <div class="type-spec-value">${esc(c.df)} ${c.dw}</div>
           </div>
-        `).join('')}
-      </div>
-
-      <div class="card-headline" style="font-family:'${c.df}',${fb}; font-weight:${c.dw}">
-        We sell your stuff for you.
-      </div>
-
-      <div class="card-price" style="font-family:'${c.df}',${fb}; font-weight:${c.dw}; color:${c.a1}">
-        $4,267
-      </div>
-
-      <p class="card-body" style="font-family:'${c.bf}',${fb}; font-weight:${c.bw}">
-        Photograph it. We handle everything else. No meetups, no haggling, no trips to the post office. The average American home has $4,267 in unused stuff.
-      </p>
-
-      <button class="card-btn" style="background:${btnBg}; color:${btnText}; font-family:'${c.bf}',${fb}; font-weight:600">
-        Get Started
-      </button>
-      <button class="card-btn-outline" style="border-color:${c.a1}; color:${c.a1}; font-family:'${c.bf}',${fb}; font-weight:600">
-        How It Works
-      </button>
-
-      <div class="card-specimen" style="font-family:'${c.df}',${fb}; font-weight:${c.dw}">
-        Aa Bb Cc Dd Ee &nbsp; 0 1 2 3 4 5 6 7 8 9
-      </div>
-
-      <div class="card-meta">
-        <div>
-          <div class="card-meta-label">Display</div>
-          <div class="card-meta-value">${c.df} ${c.dw}</div>
+          <div>
+            <div class="type-spec-label">Body</div>
+            <div class="type-spec-value">${esc(c.bf)} ${c.bw}</div>
+          </div>
         </div>
-        <div>
-          <div class="card-meta-label">Body</div>
-          <div class="card-meta-value">${c.bf} ${c.bw}</div>
-        </div>
-        <div class="card-meta-msg">${c.msg}</div>
       </div>
-    </div>
-  `;
-}
+    `).join('');
+  }
 
-document.getElementById('grid').innerHTML = concepts.map(renderCard).join('');
+  // ── Tweaks panel
+  const tweaksToggle = document.getElementById('tweaks-toggle');
+  const tweaksPanel = document.getElementById('tweaks-panel');
+  const tweaksClose = document.getElementById('tweaks-close');
+  function openTweaks() {
+    tweaksPanel.classList.add('open');
+    tweaksToggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeTweaks() {
+    tweaksPanel.classList.remove('open');
+    tweaksToggle.setAttribute('aria-expanded', 'false');
+  }
+  tweaksToggle.addEventListener('click', () => {
+    tweaksPanel.classList.contains('open') ? closeTweaks() : openTweaks();
+  });
+  tweaksClose.addEventListener('click', closeTweaks);
+  document.addEventListener('click', e => {
+    if (!tweaksPanel.classList.contains('open')) return;
+    if (tweaksPanel.contains(e.target) || tweaksToggle.contains(e.target)) return;
+    closeTweaks();
+  });
+
+  // ── Utils
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ── Init
+  renderMascots();
+  renderConcepts();
+  renderTypes();
+  renderPaletteSwatches();
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  const initial = palettes.find(p => p.hex.toLowerCase() === (stored || '').toLowerCase())
+                || palettes.find(p => p.name === 'Marigold')
+                || palettes[0];
+  applyPrimary(initial.hex, initial.name);
+
+  setTab((location.hash || '#vision').slice(1));
 </script>
 
 </body>
