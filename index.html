@@ -1085,13 +1085,13 @@
 
       <div class="coloredu-section">
         <h3>The rule</h3>
-        <p>Every lowercase u in Bounce-branded copy is set in the brand's primary color. When the surrounding text is already in the primary color, the u flips to ink. That's the entire system.</p>
+        <p>Every lowercase u in Bounce-branded titles and headers is set in the brand's primary color. Body copy stays in normal ink — the rule lives in headlines, where it reads cleanly. When the surrounding text is already in the primary color, the u flips to ink.</p>
       </div>
 
       <div class="coloredu-section">
         <h3>Why it works</h3>
         <ul class="coloredu-points">
-          <li><b>It turns body copy into brand.</b> Most identity systems live in the logo and disappear everywhere else. This rule means every headline, caption, push notification, and email subject line carries the brand. The reader doesn't need the logo to know it's Bounce.</li>
+          <li><b>It turns headlines into brand.</b> Most identity systems live in the logo and disappear everywhere else. This rule means every headline, caption, push notification, and email subject line carries the brand. The reader doesn't need the logo to know it's Bounce.</li>
           <li><b>It says "you" out loud.</b> "You" and "your" are the most common pronouns in customer-facing copy, and Bounce's pitch is about you — your stuff, your space, your cash. Every colored letter quietly reinforces who the brand is for.</li>
           <li><b>It's recognizable in the wild.</b> A colored letter in the middle of a word is a pattern the eye catches before it reads the message. Same recognition mechanism as Mailchimp yellow or Tiffany blue — but at the typographic level.</li>
           <li><b>It scales without breaking.</b> No custom typeface, no licensing. Any designer, platform, or size — the rule is "color the u." Cheap systems get executed consistently.</li>
@@ -1515,15 +1515,13 @@
     document.body.style.overflow = 'hidden';
   }
 
-  // ── Colored-U rule: live-wrap every lowercase 'u' in a region.
-  function applyColoredU(root) {
-    if (!root) return;
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+  // ── Colored-U rule: applies to titles/headers only (not body copy).
+  function wrapLowercaseU(el) {
+    if (!el) return;
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         const p = node.parentNode;
         if (!p) return NodeFilter.FILTER_REJECT;
-        const tag = p.tagName;
-        if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
         if (p.classList && p.classList.contains('u')) return NodeFilter.FILTER_REJECT;
         return node.nodeValue.indexOf('u') !== -1
           ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
@@ -1550,6 +1548,15 @@
       if (buf) frag.appendChild(document.createTextNode(buf));
       node.parentNode.replaceChild(frag, node);
     }
+  }
+
+  function applyColoredU(root) {
+    if (!root) return;
+    // Title/header elements only — never paragraphs, lists, or body text.
+    const targets = root.querySelectorAll(
+      '.coloredu-h1, .coloredu-sub, .coloredu-section h3'
+    );
+    targets.forEach(wrapLowercaseU);
   }
 
   // ── Init
