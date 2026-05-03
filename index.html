@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brandon's Brand Whiteboard — Bounce</title>
-  <meta name="description" content="A working whiteboard for the Bounce rebrand: vision, identity, logo, type, color, web, and app.">
+  <meta name="description" content="A working whiteboard for the Bounce rebrand: vision, mascot, type, color, web, and app.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=Figtree:wght@400;600;700&family=Commissioner:wght@400;600;700&family=Literata:wght@400;500;600&family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1010,7 +1010,6 @@
 
 <nav class="tabs" role="tablist" id="tabs">
   <button class="tab" role="tab" data-tab="vision">Vision</button>
-  <button class="tab" role="tab" data-tab="identity">Identity</button>
   <button class="tab" role="tab" data-tab="logo">Mascot</button>
   <button class="tab" role="tab" data-tab="type">Type</button>
   <button class="tab" role="tab" data-tab="color">Color</button>
@@ -1132,20 +1131,6 @@
           <li>Also any penalties for listing something for sale then changing your mind at some point and pulling out…?</li>
         </ul>
       </section>
-
-    </div>
-  </section>
-
-  <!-- IDENTITY -->
-  <section id="panel-identity" class="tab-panel" role="tabpanel">
-    <div class="panel-head">
-      <h2 class="panel-title">Identity</h2>
-      <p class="panel-subtitle">Voice, personality, and how Bounce shows up in the world.</p>
-    </div>
-
-    <div class="vision-content">
-
-      <p class="vision-intro">Ways to communicate both <strong>"new/unique"</strong> and <strong>"trustworthy."</strong></p>
 
     </div>
   </section>
@@ -1418,7 +1403,7 @@
 
   // ── Tabs
   const tabButtons = document.querySelectorAll('.tab');
-  const tabIds = ['vision','identity','logo','type','color','web','app'];
+  const tabIds = ['vision','logo','type','color','web','app'];
 
   function setTab(id) {
     if (!tabIds.includes(id)) id = 'vision';
