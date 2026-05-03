@@ -809,6 +809,30 @@
       box-shadow: 0 0 0 2px var(--surface);
     }
 
+    /* ── Caps rule: titles & headers all caps (logo wordmark excepted) ─── */
+    .tagline,
+    .tab,
+    .panel-title,
+    .coming-soon-title,
+    .vision-h,
+    .vision-list .label,
+    .logo-image-caption,
+    .logo-reference-title,
+    .coloredu-h1,
+    .coloredu-section h3,
+    .type-card-name,
+    .concept-name,
+    .concept-headline {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    /* Tighten tracking on the largest display headlines so caps don't feel airy */
+    .panel-title,
+    .coloredu-h1,
+    .concept-headline {
+      letter-spacing: 0.02em;
+    }
+
     /* ── Footer ─────────────────────────────────── */
     footer {
       max-width: 1440px;
