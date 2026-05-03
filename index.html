@@ -23,6 +23,8 @@
       --text-mute: #78716C;
       --primary: #F59E0B;
       --warn: #F59E0B;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -30,10 +32,19 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: var(--font-body);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+    }
+    .wordmark,
+    .panel-title,
+    .vision-h,
+    .coloredu-h1,
+    .coloredu-section h3,
+    .coming-soon-title,
+    .logo-reference-title {
+      font-family: var(--font-display);
     }
 
     /* ── Header ─────────────────────────────────── */
@@ -44,7 +55,6 @@
     }
 
     .wordmark {
-      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(40px, 6vw, 64px);
       font-weight: 700;
       letter-spacing: -0.04em;
@@ -784,7 +794,6 @@
       border-radius: 0 14px 14px 0;
     }
     .coloredu-h1 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(28px, 4vw, 36px);
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -948,6 +957,98 @@
     .swatch-pick.active {
       border-color: var(--text);
       box-shadow: 0 0 0 2px var(--surface);
+    }
+
+    /* Font picker pills */
+    .font-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .font-pick {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .font-pick:hover { color: var(--text); border-color: var(--border-strong); }
+    .font-pick.active {
+      color: var(--text);
+      background: var(--bg);
+      border-color: var(--primary);
+    }
+
+    /* Edit toggle button (sits to the left of the gear) */
+    .edit-toggle {
+      position: fixed; bottom: 20px; right: 80px;
+      height: 48px;
+      padding: 0 16px 0 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      z-index: 50;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .edit-toggle:hover { transform: scale(1.04); border-color: var(--primary); }
+    .edit-toggle svg { width: 16px; height: 16px; }
+    body.edit-mode .edit-toggle {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #1A1A1A;
+    }
+    body.edit-mode .edit-toggle:hover { transform: scale(1.04); }
+
+    /* Edit-mode banner */
+    .edit-banner {
+      position: fixed; top: 16px; left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      background: var(--primary);
+      color: #1A1A1A;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      z-index: 60;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    body.edit-mode .edit-banner {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Editable elements in edit mode */
+    body.edit-mode [data-editable] {
+      outline: 1px dashed color-mix(in srgb, var(--primary) 50%, transparent);
+      outline-offset: 4px;
+      cursor: text;
+      border-radius: 4px;
+      transition: outline-color 0.15s, background 0.15s;
+    }
+    body.edit-mode [data-editable]:hover {
+      outline-color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 5%, transparent);
+    }
+    body.edit-mode [data-editable]:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+      background: color-mix(in srgb, var(--primary) 8%, transparent);
     }
 
     /* ── Caps rule: titles & headers all caps (logo wordmark excepted) ─── */
@@ -1340,6 +1441,20 @@
   </div>
 </div>
 
+<!-- Edit-mode banner -->
+<div class="edit-banner" id="edit-banner" aria-live="polite">
+  Edit mode — click any text to edit. Changes save automatically.
+</div>
+
+<!-- Edit toggle -->
+<button class="edit-toggle" id="edit-toggle" aria-label="Toggle edit mode" aria-pressed="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20h9"/>
+    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>
+  </svg>
+  <span id="edit-toggle-label">Edit</span>
+</button>
+
 <!-- Tweaks -->
 <button class="tweaks-toggle" id="tweaks-toggle" aria-label="Open theme tweaks" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1353,6 +1468,13 @@
     <button class="tweaks-close" id="tweaks-close" aria-label="Close tweaks">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
     </button>
+  </div>
+  <div class="tweaks-section">
+    <div class="tweaks-label">
+      <span>Font</span>
+      <span class="tweaks-current" id="tweaks-font-current"></span>
+    </div>
+    <div class="font-grid" id="font-picks"></div>
   </div>
   <div class="tweaks-section">
     <div class="tweaks-label">
@@ -1375,17 +1497,58 @@
   const mascots = JSON.parse(document.getElementById('mascot-data').textContent);
   const concepts = JSON.parse(document.getElementById('concept-data').textContent);
 
-  // ── Palette options for the Tweaks panel (from concept primary colors)
-  const palettes = concepts.map(c => ({ name: c.name, hex: c.a1 }));
+  // ── Palette options for the Tweaks panel — curated subset of concepts.
+  const PALETTE_NAMES = ['Mineral', 'Marigold', 'Buttercream', 'Pistachio', 'Greenhouse'];
+  const palettes = PALETTE_NAMES
+    .map(n => concepts.find(c => c.name === n))
+    .filter(Boolean)
+    .map(c => ({ name: c.name, hex: c.a1 }));
 
-  // ── Theme
+  // ── Font options
+  const FONTS = [
+    { name: 'Futura PT',      display: "'Futura PT', Futura, 'Jost', sans-serif",      body: "'Futura PT', Futura, 'Jost', sans-serif" },
+    { name: 'Century Gothic', display: "'Century Gothic', 'CenturyGothic', 'Avenir Next', system-ui, sans-serif", body: "'Century Gothic', 'CenturyGothic', 'Avenir Next', system-ui, sans-serif" },
+    { name: 'Mineral',        display: "'Plus Jakarta Sans', sans-serif",              body: "'Work Sans', sans-serif" },
+    { name: 'Marigold',       display: "'Figtree', sans-serif",                        body: "'Work Sans', sans-serif" },
+    { name: 'Clementine',     display: "'Gabarito', sans-serif",                       body: "'DM Sans', sans-serif" },
+    { name: 'Greenhouse',     display: "'Urbanist', sans-serif",                       body: "'Crimson Pro', serif" },
+  ];
+
+  // ── Storage keys
   const STORAGE_KEY = 'bounce-primary';
+  const FONT_STORAGE_KEY = 'bounce-font';
+  const EDIT_STORAGE_KEY = 'bounce-edits';
+
   function applyPrimary(hex, name) {
     document.documentElement.style.setProperty('--primary', hex);
     localStorage.setItem(STORAGE_KEY, hex);
     document.getElementById('tweaks-current').textContent = name || '';
     document.querySelectorAll('.swatch-pick').forEach(s => {
       s.classList.toggle('active', s.dataset.hex.toLowerCase() === hex.toLowerCase());
+    });
+  }
+
+  function applyFont(name) {
+    const f = FONTS.find(x => x.name === name);
+    if (!f) return;
+    document.documentElement.style.setProperty('--font-display', f.display);
+    document.documentElement.style.setProperty('--font-body', f.body);
+    localStorage.setItem(FONT_STORAGE_KEY, name);
+    document.getElementById('tweaks-font-current').textContent = name;
+    document.querySelectorAll('.font-pick').forEach(b => {
+      b.classList.toggle('active', b.dataset.name === name);
+    });
+  }
+
+  function renderFontPicks() {
+    const container = document.getElementById('font-picks');
+    container.innerHTML = FONTS.map(f => `
+      <button class="font-pick" data-name="${esc(f.name)}"
+              style="font-family:${f.display}"
+              title="${esc(f.name)}">${esc(f.name)}</button>
+    `).join('');
+    container.querySelectorAll('.font-pick').forEach(btn => {
+      btn.addEventListener('click', () => applyFont(btn.dataset.name));
     });
   }
 
@@ -1481,6 +1644,7 @@
       });
       grid.appendChild(card);
     }
+    if (typeof refreshAfterRender === 'function') refreshAfterRender();
   }
 
   filterBtns.forEach(btn => {
@@ -1574,6 +1738,7 @@
         applyPrimary(btn.dataset.hex, btn.dataset.name);
       });
     });
+    if (typeof refreshAfterRender === 'function') refreshAfterRender();
   }
 
   // ── Type tab
@@ -1604,6 +1769,7 @@
         </div>
       </div>
     `).join('');
+    if (typeof refreshAfterRender === 'function') refreshAfterRender();
   }
 
   // ── Tweaks panel
@@ -1679,6 +1845,7 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
       });
     });
+    if (typeof refreshAfterRender === 'function') refreshAfterRender();
   }
 
   function openImageLightbox(src, caption) {
@@ -1738,11 +1905,125 @@
     targets.forEach(wrapLowercaseU);
   }
 
+  // ── Edit mode
+  // Selectors that become contenteditable when edit mode is on.
+  const EDITABLE_SELECTORS = [
+    '.tagline',
+    '.tab',
+    '.panel-title', '.panel-subtitle',
+    '.coming-soon-title', '.coming-soon-text',
+    '.vision-intro',
+    '.vision-h',
+    '.vision-section > p',
+    '.vision-list > li',
+    '.vision-sub-label',
+    '.coloredu-h1', '.coloredu-sub',
+    '.coloredu-section h3', '.coloredu-section p',
+    '.coloredu-points li',
+    '.logo-section-lead',
+    '.logo-image-caption',
+    '.logo-reference-title', '.logo-reference-subtitle',
+    '.mascot-card .title', '.mascot-card .desc', '.mascot-notes',
+    '.type-card-name',
+    '.concept-name', '.concept-tag', '.concept-headline', '.concept-body', '.concept-msg',
+  ];
+
+  // Build a stable selector path from body to el.
+  function elementPath(el) {
+    const parts = [];
+    let node = el;
+    while (node && node !== document.body && node.parentElement) {
+      let seg = node.tagName.toLowerCase();
+      const parent = node.parentElement;
+      const sameTag = Array.from(parent.children).filter(c => c.tagName === node.tagName);
+      if (sameTag.length > 1) seg += `:nth-of-type(${sameTag.indexOf(node) + 1})`;
+      parts.unshift(seg);
+      node = parent;
+    }
+    return parts.join(' > ');
+  }
+
+  function loadEdits() {
+    try { return JSON.parse(localStorage.getItem(EDIT_STORAGE_KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function saveEdits(map) {
+    localStorage.setItem(EDIT_STORAGE_KEY, JSON.stringify(map));
+  }
+
+  // Apply saved edits back to matching elements (skip the focused one
+  // so live typing doesn't get clobbered).
+  function restoreEdits() {
+    const map = loadEdits();
+    for (const [path, html] of Object.entries(map)) {
+      try {
+        const el = document.querySelector(path);
+        if (!el) continue;
+        if (el === document.activeElement) continue;
+        if (el.innerHTML === html) continue;
+        el.innerHTML = html;
+      } catch {}
+    }
+  }
+
+  // Hook to re-apply edit-mode + saved edits after dynamic renders.
+  function refreshAfterRender() {
+    if (editMode) markEditableElements(true);
+    restoreEdits();
+  }
+
+  function markEditableElements(on) {
+    const els = document.querySelectorAll(EDITABLE_SELECTORS.join(','));
+    els.forEach(el => {
+      if (on) {
+        el.setAttribute('data-editable', '');
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('spellcheck', 'true');
+      } else {
+        el.removeAttribute('data-editable');
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('spellcheck');
+      }
+    });
+  }
+
+  let editMode = false;
+  const editToggle = document.getElementById('edit-toggle');
+  const editLabel = document.getElementById('edit-toggle-label');
+
+  function setEditMode(on) {
+    editMode = !!on;
+    document.body.classList.toggle('edit-mode', editMode);
+    editToggle.setAttribute('aria-pressed', String(editMode));
+    editLabel.textContent = editMode ? 'Done' : 'Edit';
+    markEditableElements(editMode);
+  }
+
+  editToggle.addEventListener('click', () => setEditMode(!editMode));
+
+  // Save on blur or input. Use event delegation on body.
+  document.addEventListener('input', e => {
+    if (!editMode) return;
+    const t = e.target;
+    if (!t.hasAttribute || !t.hasAttribute('data-editable')) return;
+    const map = loadEdits();
+    map[elementPath(t)] = t.innerHTML;
+    saveEdits(map);
+  });
+
+  // Esc exits edit mode (unless inside the lightbox).
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && editMode && !lightbox.classList.contains('open')) {
+      setEditMode(false);
+    }
+  });
+
   // ── Init
   renderMascots();
   renderConcepts();
   renderTypes();
   renderPaletteSwatches();
+  renderFontPicks();
   renderLogoGrid('logo-grid-traditional', logoTraditional);
   renderLogoGrid('logo-grid-anthropomorphic', logoAnthropomorphic);
   applyColoredU(document.getElementById('coloredu-content'));
@@ -1771,11 +2052,23 @@
     });
   });
 
-  const stored = localStorage.getItem(STORAGE_KEY);
-  const initial = palettes.find(p => p.hex.toLowerCase() === (stored || '').toLowerCase())
-                || palettes.find(p => p.name === 'Marigold')
-                || palettes[0];
-  applyPrimary(initial.hex, initial.name);
+  // Restore primary color
+  const storedHex = localStorage.getItem(STORAGE_KEY);
+  const initialPalette = palettes.find(p => p.hex.toLowerCase() === (storedHex || '').toLowerCase())
+                      || palettes.find(p => p.name === 'Marigold')
+                      || palettes[0];
+  applyPrimary(initialPalette.hex, initialPalette.name);
+
+  // Restore font (if set)
+  const storedFont = localStorage.getItem(FONT_STORAGE_KEY);
+  if (storedFont && FONTS.find(f => f.name === storedFont)) {
+    applyFont(storedFont);
+  } else {
+    document.getElementById('tweaks-font-current').textContent = 'Default';
+  }
+
+  // Restore any saved edits
+  restoreEdits();
 
   setTab((location.hash || '#vision').slice(1));
 </script>
