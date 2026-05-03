@@ -1494,6 +1494,7 @@
 
   // ── Font options
   const FONTS = [
+    { name: 'Default',        display: "'Plus Jakarta Sans', sans-serif",              body: "'Inter', system-ui, -apple-system, sans-serif" },
     { name: 'Futura PT',      display: "'Futura PT', Futura, 'Jost', sans-serif",      body: "'Futura PT', Futura, 'Jost', sans-serif" },
     { name: 'Century Gothic', display: "'Century Gothic', 'CenturyGothic', 'Avenir Next', system-ui, sans-serif", body: "'Century Gothic', 'CenturyGothic', 'Avenir Next', system-ui, sans-serif" },
     { name: 'Mineral',        display: "'Plus Jakarta Sans', sans-serif",              body: "'Work Sans', sans-serif" },
@@ -2049,11 +2050,7 @@
 
   // Restore font (if set)
   const storedFont = localStorage.getItem(FONT_STORAGE_KEY);
-  if (storedFont && FONTS.find(f => f.name === storedFont)) {
-    applyFont(storedFont);
-  } else {
-    document.getElementById('tweaks-font-current').textContent = 'Default';
-  }
+  applyFont(FONTS.find(f => f.name === storedFont) ? storedFont : 'Default');
 
   // Restore any saved edits
   restoreEdits();
