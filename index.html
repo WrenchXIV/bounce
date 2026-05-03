@@ -1441,6 +1441,16 @@
 
     </div>
 
+    <div class="controls">
+      <div class="filters round-filter" role="group" aria-label="Filter by round">
+        <button class="filter-btn active" data-round="all">All</button>
+        <button class="filter-btn" data-round="Round 4">Round 4 · Diverge</button>
+        <button class="filter-btn" data-round="Round 3">Round 3</button>
+        <button class="filter-btn" data-round="Round 2">Round 2</button>
+        <button class="filter-btn" data-round="Round 1">Round 1</button>
+        <button class="filter-btn" data-round="archived">Archived</button>
+      </div>
+    </div>
     <div class="type-grid" id="type-grid"></div>
   </section>
 
@@ -1448,7 +1458,17 @@
   <section id="panel-color" class="tab-panel" role="tabpanel">
     <div class="panel-head">
       <h2 class="panel-title">Color</h2>
-      <p class="panel-subtitle">11 palette + typography concepts shown in context. Click <em>Apply</em> on any card to make its accent the site primary.</p>
+      <p class="panel-subtitle">Palette + typography concepts shown in context. Click <em>Apply</em> on any card to make its accent the site primary.</p>
+    </div>
+    <div class="controls">
+      <div class="filters round-filter" role="group" aria-label="Filter by round">
+        <button class="filter-btn active" data-round="all">All</button>
+        <button class="filter-btn" data-round="Round 4">Round 4 · Diverge</button>
+        <button class="filter-btn" data-round="Round 3">Round 3</button>
+        <button class="filter-btn" data-round="Round 2">Round 2</button>
+        <button class="filter-btn" data-round="Round 1">Round 1</button>
+        <button class="filter-btn" data-round="archived">Archived</button>
+      </div>
     </div>
     <div class="concept-grid" id="concept-grid"></div>
   </section>
@@ -1837,16 +1857,47 @@
     `;
   }
 
+  // ── Round filter (shared across Color + Type tabs)
+  let currentRound = 'all';
+  function partitionForRound() {
+    if (currentRound === 'archived') {
+      return { lead: concepts.filter(c => c.archived), trail: [], showDivider: false };
+    }
+    if (currentRound === 'all') {
+      return {
+        lead: concepts.filter(c => !c.archived),
+        trail: concepts.filter(c => c.archived),
+        showDivider: true,
+      };
+    }
+    return { lead: concepts.filter(c => c.round === currentRound), trail: [], showDivider: false };
+  }
+  function setRound(round) {
+    currentRound = round;
+    document.querySelectorAll('.round-filter').forEach(group => {
+      group.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.round === round);
+      });
+    });
+    renderConcepts();
+    renderTypes();
+  }
+  document.querySelectorAll('.round-filter').forEach(group => {
+    group.addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (btn && btn.dataset.round) setRound(btn.dataset.round);
+    });
+  });
+
   function renderConcepts() {
     const container = document.getElementById('concept-grid');
-    const active = concepts.filter(c => !c.archived);
-    const archived = concepts.filter(c => c.archived);
-    const divider = archived.length ? `
+    const { lead, trail, showDivider } = partitionForRound();
+    const divider = (showDivider && trail.length) ? `
       <div class="section-divider">
         <span>Archived directions</span>
         <span class="section-divider-note">— second tier, kept for reference</span>
       </div>` : '';
-    container.innerHTML = active.map(conceptCard).join('') + divider + archived.map(conceptCard).join('');
+    container.innerHTML = lead.map(conceptCard).join('') + divider + trail.map(conceptCard).join('');
     container.querySelectorAll('.apply-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
@@ -1887,14 +1938,13 @@
 
   function renderTypes() {
     const container = document.getElementById('type-grid');
-    const active = concepts.filter(c => !c.archived);
-    const archived = concepts.filter(c => c.archived);
-    const divider = archived.length ? `
+    const { lead, trail, showDivider } = partitionForRound();
+    const divider = (showDivider && trail.length) ? `
       <div class="section-divider">
         <span>Archived directions</span>
         <span class="section-divider-note">— second tier, kept for reference</span>
       </div>` : '';
-    container.innerHTML = active.map(typeCard).join('') + divider + archived.map(typeCard).join('');
+    container.innerHTML = lead.map(typeCard).join('') + divider + trail.map(typeCard).join('');
     if (typeof refreshAfterRender === 'function') refreshAfterRender();
   }
 
