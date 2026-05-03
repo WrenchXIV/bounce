@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Mascot App Icons</title>
+  <meta name="description" content="Companies with animal/creature mascots in app icon or logo design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #1C1917;
+      --surface: #292524;
+      --surface-2: #34302d;
+      --border: #44403C;
+      --text: #FAFAF9;
+      --text-dim: #A8A29E;
+      --accent: #84CC16;
+      --warn: #F59E0B;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    header {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 56px 32px 24px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-dim);
+      font-size: 15px;
+      max-width: 640px;
+    }
+
+    .controls {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 32px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search {
+      flex: 1 1 280px;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search:focus { border-color: var(--accent); }
+    .search::placeholder { color: var(--text-dim); }
+
+    .filters {
+      display: flex;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .filter-btn:hover { color: var(--text); }
+    .filter-btn.active {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .count {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-left: auto;
+    }
+
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 32px 80px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .card:hover { border-color: #57534E; }
+
+    .image-wrap {
+      position: relative;
+      align-self: center;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 180px;
+      background: var(--surface-2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .image-wrap img {
+      max-width: 70%;
+      max-height: 70%;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .maximize-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(28, 25, 23, 0.7);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s, background 0.15s;
+      backdrop-filter: blur(4px);
+    }
+    .image-wrap:hover .maximize-btn,
+    .maximize-btn:focus-visible { opacity: 1; }
+    .maximize-btn:hover { background: rgba(28, 25, 23, 0.9); }
+    .maximize-btn svg { width: 16px; height: 16px; }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+
+    .card-meta {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 8px;
+    }
+
+    .badge {
+      align-self: flex-start;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+    .badge-high {
+      color: var(--accent);
+      border-color: rgba(132, 204, 22, 0.4);
+      background: rgba(132, 204, 22, 0.08);
+    }
+    .badge-medium {
+      color: var(--warn);
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .card-notes {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-dim);
+    }
+
+    /* ── Lightbox ─────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      z-index: 100;
+      animation: fade 0.15s ease-out;
+    }
+    .lightbox.open { display: flex; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .lightbox-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 560px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      position: relative;
+    }
+
+    .lightbox-img {
+      width: 320px;
+      height: 320px;
+      max-width: 100%;
+      background: var(--surface-2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox-img img {
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .lightbox-title {
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .lightbox-desc {
+      font-size: 14px;
+      color: var(--text-dim);
+      text-align: center;
+      max-width: 440px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .close-btn:hover { background: var(--border); }
+    .close-btn svg { width: 18px; height: 18px; }
+
+    @media (max-width: 600px) {
+      header { padding: 32px 20px 16px; }
+      .controls { padding: 16px 20px 8px; }
+      main { padding: 16px 20px 60px; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+      .lightbox { padding: 16px; }
+      .lightbox-content { padding: 24px 20px; }
+      .lightbox-img { width: 240px; height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Animal Mascot App Icons</h1>
+    <p class="subtitle">Companies with animal or creature mascots in their app icon or logo design. Click any image to maximize.</p>
+  </header>
+
+  <div class="controls">
+    <input type="search" class="search" id="search" placeholder="Search by company, description, or notes…" aria-label="Search">
+    <div class="filters" role="group" aria-label="Filter by confidence">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="High">High</button>
+      <button class="filter-btn" data-filter="Medium">Medium</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+
+  <main>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden>No matches.</div>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <div class="lightbox-content">
+      <button class="close-btn" id="close-btn" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+      <div class="lightbox-img"><img id="lightbox-img" alt=""></div>
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-desc" id="lightbox-desc"></div>
+    </div>
+  </div>
+
+  <script id="mascot-data" type="application/json">[{"company":"Duolingo","description":"Duo — green owl mascot used as the app/icon face.","image_url":"https://www.google.com/s2/favicons?domain=duolingo.com&sz=128","confidence":"High","notes":""},{"company":"DuckDuckGo","description":"Duck head mascot/logo.","image_url":"https://www.google.com/s2/favicons?domain=duckduckgo.com&sz=128","confidence":"High","notes":""},{"company":"Hootsuite","description":"Owly — owl mascot/brand icon.","image_url":"https://www.google.com/s2/favicons?domain=hootsuite.com&sz=128","confidence":"High","notes":""},{"company":"Puffin Browser","description":"Puffin bird mascot/logo.","image_url":"https://www.google.com/s2/favicons?domain=puffin.com&sz=128","confidence":"Medium","notes":"Icon/logo can vary by platform, country, or seasonal app update."},{"company":"Bear","description":"Bear head icon for the notes/writing app.","image_url":"https://www.google.com/s2/favicons?domain=bear.app&sz=128","confidence":"High","notes":""},{"company":"Chick-fil-A","description":"Chicken/rooster-like C mark.","image_url":"https://www.google.com/s2/favicons?domain=chick-fil-a.com&sz=128","confidence":"High","notes":""},{"company":"Evernote","description":"Elephant head logo.","image_url":"https://www.google.com/s2/favicons?domain=evernote.com&sz=128","confidence":"High","notes":""},{"company":"Mailchimp","description":"Freddie the chimp mascot; current app icon usage may vary.","image_url":"https://www.google.com/s2/favicons?domain=mailchimp.com&sz=128","confidence":"Medium","notes":"Icon/logo can vary by platform, country, or seasonal app update."}]</script>
+  <script>
+    const data = JSON.parse(document.getElementById('mascot-data').textContent);
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const search = document.getElementById('search');
+    const count = document.getElementById('count');
+    const filters = document.querySelectorAll('.filter-btn');
+
+    let activeFilter = 'all';
+
+    // Upgrade Google favicon URLs to a larger size for clarity.
+    function upscale(url, size) {
+      return url.replace(/([?&])sz=\d+/, `$1sz=${size}`);
+    }
+
+    function badgeClass(conf) {
+      if (conf === 'High') return 'badge badge-high';
+      if (conf === 'Medium') return 'badge badge-medium';
+      return 'badge';
+    }
+
+    function render() {
+      const q = search.value.trim().toLowerCase();
+      const filtered = data.filter(d => {
+        if (activeFilter !== 'all' && d.confidence !== activeFilter) return false;
+        if (!q) return true;
+        return (
+          d.company.toLowerCase().includes(q) ||
+          d.description.toLowerCase().includes(q) ||
+          d.notes.toLowerCase().includes(q)
+        );
+      });
+
+      grid.innerHTML = '';
+      empty.hidden = filtered.length > 0;
+      count.textContent = `${filtered.length} of ${data.length}`;
+
+      for (const d of filtered) {
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const imgUrl = upscale(d.image_url, 128);
+        const bigUrl = upscale(d.image_url, 256);
+
+        card.innerHTML = `
+          <div class="image-wrap" data-action="maximize" tabindex="0" role="button" aria-label="Maximize image for ${escapeAttr(d.company)}">
+            <img src="${escapeAttr(imgUrl)}" alt="${escapeAttr(d.company)} icon" loading="lazy" referrerpolicy="no-referrer">
+            <button class="maximize-btn" type="button" aria-label="Maximize">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/>
+              </svg>
+            </button>
+          </div>
+          <div>
+            <div class="card-title">${escapeHtml(d.company)}</div>
+            <div class="card-desc">${escapeHtml(d.description)}</div>
+          </div>
+          <div class="card-meta">
+            <span class="${badgeClass(d.confidence)}">${escapeHtml(d.confidence)}</span>
+            ${d.notes ? `<div class="card-notes">${escapeHtml(d.notes)}</div>` : ''}
+          </div>
+        `;
+
+        const wrap = card.querySelector('.image-wrap');
+        const open = () => openLightbox(d, bigUrl);
+        wrap.addEventListener('click', open);
+        wrap.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
+
+        grid.appendChild(card);
+      }
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const closeBtn = document.getElementById('close-btn');
+    let lastFocus = null;
+
+    function openLightbox(d, bigUrl) {
+      lastFocus = document.activeElement;
+      lightboxImg.src = bigUrl;
+      lightboxImg.alt = `${d.company} icon`;
+      lightboxTitle.textContent = d.company;
+      lightboxDesc.textContent = d.description;
+      lightbox.hidden = false;
+      lightbox.classList.add('open');
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.hidden = true;
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+
+    // Filter buttons
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    search.addEventListener('input', render);
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function escapeAttr(s) { return escapeHtml(s); }
+
+    render();
+  </script>
+</body>
+</html>
