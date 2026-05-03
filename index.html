@@ -9,6 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=Figtree:wght@400;600;700&family=Commissioner:wght@400;600;700&family=Literata:wght@400;500;600&family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;600;700&family=Nunito:wght@400;600;700;800&family=Crimson+Pro:wght@400;600&family=Zilla+Slab:wght@400;600;700&family=Raleway:wght@400;500;600;700&family=Bungee&family=Josefin+Sans:wght@400;600;700&family=Urbanist:wght@400;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('bounce-theme');
+        var theme = stored === 'light' || stored === 'dark'
+          ? stored
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -23,8 +36,21 @@
       --text-mute: #78716C;
       --primary: #F59E0B;
       --warn: #F59E0B;
+      --shadow-float: 0 4px 16px rgba(0,0,0,0.3);
       --font-body: 'Inter', system-ui, -apple-system, sans-serif;
       --font-display: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg: #FAFAF9;
+      --surface: #FFFFFF;
+      --surface-2: #F5F5F4;
+      --border: #E7E5E4;
+      --border-strong: #D6D3D1;
+      --text: #1C1917;
+      --text-dim: #57534E;
+      --text-mute: #78716C;
+      --shadow-float: 0 4px 16px rgba(28,25,23,0.12);
     }
 
     html { scroll-behavior: smooth; }
@@ -899,11 +925,32 @@
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       z-index: 50;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-      transition: transform 0.15s, border-color 0.15s;
+      box-shadow: var(--shadow-float);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
     }
     .tweaks-toggle:hover { transform: scale(1.05); border-color: var(--primary); }
     .tweaks-toggle svg { width: 20px; height: 20px; }
+
+    /* Theme toggle — sits to the left of the edit toggle */
+    .theme-toggle {
+      position: fixed; bottom: 20px; right: 195px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 50;
+      box-shadow: var(--shadow-float);
+      transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .theme-toggle:hover { transform: scale(1.05); border-color: var(--primary); }
+    .theme-toggle svg { width: 20px; height: 20px; }
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="light"] .theme-toggle .icon-moon { display: none; }
 
     .tweaks-panel {
       position: fixed; bottom: 80px; right: 20px;
@@ -999,7 +1046,7 @@
       cursor: pointer;
       display: flex; align-items: center; gap: 8px;
       z-index: 50;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      box-shadow: var(--shadow-float);
       transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
     }
     .edit-toggle:hover { transform: scale(1.04); border-color: var(--primary); }
@@ -1022,7 +1069,7 @@
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.01em;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      box-shadow: var(--shadow-float);
       z-index: 60;
       opacity: 0;
       transition: opacity 0.2s, transform 0.2s;
@@ -1099,6 +1146,7 @@
       .lightbox-img { width: 240px; height: 240px; }
       .tweaks-panel { width: calc(100vw - 40px); }
       .swatch-grid { grid-template-columns: repeat(6, 1fr); }
+      .theme-toggle { bottom: 76px; right: 20px; }
     }
   </style>
 </head>
@@ -1434,6 +1482,17 @@
   Edit mode — click any text to edit. Changes save automatically.
 </div>
 
+<!-- Theme toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle light mode" aria-pressed="false" title="Toggle theme">
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+  </svg>
+</button>
+
 <!-- Edit toggle -->
 <button class="edit-toggle" id="edit-toggle" aria-label="Toggle edit mode" aria-pressed="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1507,6 +1566,28 @@
   const STORAGE_KEY = 'bounce-primary';
   const FONT_STORAGE_KEY = 'bounce-font';
   const EDIT_STORAGE_KEY = 'bounce-edits';
+  const THEME_STORAGE_KEY = 'bounce-theme';
+
+  // ── Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    const t = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    if (themeToggle) {
+      const isLight = t === 'light';
+      themeToggle.setAttribute('aria-pressed', String(isLight));
+      themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+    }
+  }
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+  applyTheme(currentTheme());
+  themeToggle?.addEventListener('click', () => {
+    const next = currentTheme() === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem(THEME_STORAGE_KEY, next); } catch (e) {}
+  });
 
   function applyPrimary(hex, name) {
     document.documentElement.style.setProperty('--primary', hex);
