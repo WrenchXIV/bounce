@@ -158,6 +158,147 @@
       max-width: 380px;
     }
 
+    /* ── Web design tab (version preview) ─── */
+    .web-intro {
+      color: var(--text-dim);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+    .web-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .web-toggle {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .web-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .web-toggle-btn:hover { color: var(--text); }
+    .web-toggle-btn.active {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+    .web-toggle-btn .web-toggle-tag {
+      color: var(--text-mute);
+      font-weight: 500;
+      margin-left: 6px;
+    }
+    .web-toggle-btn.active .web-toggle-tag {
+      color: var(--text-dim);
+    }
+    .web-open-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 13px;
+      text-decoration: none;
+      margin-left: auto;
+      transition: color 0.15s;
+    }
+    .web-open-link:hover { color: var(--text); }
+    .web-open-link svg { width: 14px; height: 14px; }
+    .web-frame-wrap {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      height: clamp(560px, 78vh, 980px);
+    }
+    .web-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #fff;
+    }
+    .web-frame[hidden] { display: none; }
+    .web-frame-blocked {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      padding: 48px 24px;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(245,158,11,0.06), transparent 60%),
+        var(--surface);
+    }
+    .web-frame-blocked[hidden] { display: none; }
+    .web-frame-blocked-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+    .web-frame-blocked-icon svg { width: 24px; height: 24px; }
+    .web-frame-blocked-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .web-frame-blocked-text {
+      color: var(--text-dim);
+      font-size: 14px;
+      max-width: 460px;
+      line-height: 1.6;
+    }
+    .web-frame-blocked-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #1C1917;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 4px;
+    }
+    .web-frame-blocked-cta svg { width: 14px; height: 14px; }
+    .web-frame-blocked code {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--text-mute);
+    }
+    .web-frame-note {
+      color: var(--text-mute);
+      font-size: 12px;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
     /* ── Vision tab ──────────────────────────── */
     .vision-content {
       display: flex;
@@ -1146,12 +1287,39 @@
       <h2 class="panel-title">Web design</h2>
       <p class="panel-subtitle">Site layout, components, and page-level direction for bounce.com.</p>
     </div>
-    <div class="coming-soon">
-      <div class="coming-soon-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+
+    <p class="web-intro">
+      Three marketing-site directions for the Bounce homepage. <b>v1</b> is the current live site at trybounce.ai. <b>v2</b> and <b>v3</b> are new explorations that lean into the rebrand — different layouts, different ways of staging the value proposition. Toggle between them to compare side-by-side.
+    </p>
+
+    <div class="web-toolbar">
+      <div class="web-toggle" role="tablist" aria-label="Homepage version">
+        <button class="web-toggle-btn active" role="tab" data-web-version="v1" aria-selected="true">v1<span class="web-toggle-tag">Live</span></button>
+        <button class="web-toggle-btn" role="tab" data-web-version="v2" aria-selected="false">v2<span class="web-toggle-tag">The Split</span></button>
+        <button class="web-toggle-btn" role="tab" data-web-version="v3" aria-selected="false">v3<span class="web-toggle-tag">Horizontal Split</span></button>
       </div>
-      <div class="coming-soon-title">Coming soon</div>
-      <div class="coming-soon-text">Wireframes, hero treatments, and key page layouts will live here.</div>
+      <a class="web-open-link" id="web-open-link" href="https://www.trybounce.ai/" target="_blank" rel="noopener">
+        Open in new tab
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+      </a>
+    </div>
+
+    <div class="web-frame-wrap">
+      <div class="web-frame-blocked" data-web-frame="v1">
+        <div class="web-frame-blocked-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+        </div>
+        <div class="web-frame-blocked-title">trybounce.ai is the live site</div>
+        <div class="web-frame-blocked-text">
+          The current production site can't be embedded here — it sets <code>X-Frame-Options: SAMEORIGIN</code>, which blocks loading inside other domains. Open it in a new tab for the real thing.
+        </div>
+        <a class="web-frame-blocked-cta" href="https://www.trybounce.ai/" target="_blank" rel="noopener">
+          Open trybounce.ai
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v7H3V3h7"/></svg>
+        </a>
+      </div>
+      <iframe class="web-frame" data-web-frame="v2" data-src="SampleWebDesigns/Bounce%20Homepage%20v2.html" title="Bounce homepage v2 — The Split" loading="lazy" hidden></iframe>
+      <iframe class="web-frame" data-web-frame="v3" data-src="SampleWebDesigns/Bounce%20Homepage%20v3.html" title="Bounce homepage v3 — The Horizontal Split" loading="lazy" hidden></iframe>
     </div>
   </section>
 
@@ -1589,6 +1757,30 @@
   renderLogoGrid('logo-grid-traditional', logoTraditional);
   renderLogoGrid('logo-grid-anthropomorphic', logoAnthropomorphic);
   applyColoredU(document.getElementById('coloredu-content'));
+
+  // ── Web design tab: version toggle ──────────
+  const webOpenLinks = {
+    v1: 'https://www.trybounce.ai/',
+    v2: 'SampleWebDesigns/Bounce%20Homepage%20v2.html',
+    v3: 'SampleWebDesigns/Bounce%20Homepage%20v3.html'
+  };
+  const webOpenLink = document.getElementById('web-open-link');
+  document.querySelectorAll('.web-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = btn.dataset.webVersion;
+      document.querySelectorAll('.web-toggle-btn').forEach(b => {
+        const on = b === btn;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-web-frame]').forEach(f => {
+        const show = f.dataset.webFrame === v;
+        if (show && f.tagName === 'IFRAME' && !f.src && f.dataset.src) f.src = f.dataset.src;
+        f.hidden = !show;
+      });
+      if (webOpenLink) webOpenLink.href = webOpenLinks[v];
+    });
+  });
 
   const stored = localStorage.getItem(STORAGE_KEY);
   const initial = palettes.find(p => p.hex.toLowerCase() === (stored || '').toLowerCase())
