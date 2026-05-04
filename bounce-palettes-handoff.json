@@ -1,0 +1,137 @@
+{
+  "exported_at": "2026-05-04",
+  "source": "Bounce Brand Whiteboard — Round 6 finalists",
+  "purpose": "Three palette + type candidates to apply to trybounce.ai for live A/B comparison. Apply one candidate at a time.",
+
+  "fonts": {
+    "shared_google_fonts_url": "https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Sofia+Sans:wght@400;500;600;700&display=swap",
+    "shared_html_snippet": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Sofia+Sans:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">",
+    "display": {
+      "family": "Onest",
+      "stack": "'Onest', system-ui, -apple-system, sans-serif",
+      "weights_loaded": [400, 500, 600, 700],
+      "default_weight": 700,
+      "use_for": "Wordmark, headlines, section titles, button labels"
+    },
+    "body": {
+      "family": "Sofia Sans",
+      "stack": "'Sofia Sans', system-ui, -apple-system, sans-serif",
+      "weights_loaded": [400, 500, 600, 700],
+      "default_weight": 400,
+      "use_for": "Body copy, paragraphs, meta text, form labels"
+    }
+  },
+
+  "wordmark_rule": {
+    "name": "Colored-U rule",
+    "description": "In the 'bounce' wordmark, and in titles/headlines that contain a lowercase 'u', the 'u' character is rendered in the primary color. Body copy is not affected. The rule applies to display type only — never to running paragraphs.",
+    "html_pattern": "Bo<span style=\"color: var(--bounce-primary)\">u</span>nce"
+  },
+
+  "color_role_glossary": {
+    "background": "Page background. The canvas the brand sits on.",
+    "text": "Default body and heading text color.",
+    "primary": "The brand accent. The colored 'u', primary CTAs, key accents, hover states, anything brand-led.",
+    "secondary": "Grounding / authority color. Secondary CTAs, links, contrast badges, feature numbers, supporting accents.",
+    "muted": "Quiet third tone. Cards, alternate row backgrounds, dividers, disabled states, watermark-style accents."
+  },
+
+  "candidates": [
+    {
+      "id": "80",
+      "name": "Marigold · Refined",
+      "tag": "Marigold base, refined type",
+      "summary": "Marigold's amber + navy palette with Onest for display and Sofia Sans for body. Premium without seriousness; conversational without going soft.",
+      "colors": {
+        "background": "#FFFAF0",
+        "text": "#1A1A2E",
+        "primary": "#F59E0B",
+        "secondary": "#2D4A7A",
+        "muted": "#F0E8D4"
+      },
+      "css_variables": {
+        "--bounce-bg": "#FFFAF0",
+        "--bounce-text": "#1A1A2E",
+        "--bounce-primary": "#F59E0B",
+        "--bounce-secondary": "#2D4A7A",
+        "--bounce-muted": "#F0E8D4"
+      },
+      "tailwind_extend_colors": {
+        "bounce": {
+          "bg": "#FFFAF0",
+          "text": "#1A1A2E",
+          "primary": "#F59E0B",
+          "secondary": "#2D4A7A",
+          "muted": "#F0E8D4"
+        }
+      }
+    },
+    {
+      "id": "100",
+      "name": "Greenhouse + Clementine · Light",
+      "tag": "Green primary, orange secondary, lighter ground",
+      "summary": "Greenhouse's green leads, Clementine's orange replaces sienna as the secondary. Background pulled halfway toward white for a brighter, more app-like ground.",
+      "colors": {
+        "background": "#FAF9F4",
+        "text": "#1A2A1A",
+        "primary": "#4A8A4A",
+        "secondary": "#E8722A",
+        "muted": "#E4E0D2"
+      },
+      "css_variables": {
+        "--bounce-bg": "#FAF9F4",
+        "--bounce-text": "#1A2A1A",
+        "--bounce-primary": "#4A8A4A",
+        "--bounce-secondary": "#E8722A",
+        "--bounce-muted": "#E4E0D2"
+      },
+      "tailwind_extend_colors": {
+        "bounce": {
+          "bg": "#FAF9F4",
+          "text": "#1A2A1A",
+          "primary": "#4A8A4A",
+          "secondary": "#E8722A",
+          "muted": "#E4E0D2"
+        }
+      }
+    },
+    {
+      "id": "88",
+      "name": "Greenhouse + Marigold",
+      "tag": "Green primary, amber secondary",
+      "summary": "Green leads, Marigold's amber as the secondary. More golden than orange, more value-coded than fresh.",
+      "colors": {
+        "background": "#F4F2E8",
+        "text": "#1A2A1A",
+        "primary": "#4A8A4A",
+        "secondary": "#F59E0B",
+        "muted": "#E4E0D2"
+      },
+      "css_variables": {
+        "--bounce-bg": "#F4F2E8",
+        "--bounce-text": "#1A2A1A",
+        "--bounce-primary": "#4A8A4A",
+        "--bounce-secondary": "#F59E0B",
+        "--bounce-muted": "#E4E0D2"
+      },
+      "tailwind_extend_colors": {
+        "bounce": {
+          "bg": "#F4F2E8",
+          "text": "#1A2A1A",
+          "primary": "#4A8A4A",
+          "secondary": "#F59E0B",
+          "muted": "#E4E0D2"
+        }
+      }
+    }
+  ],
+
+  "implementation_notes": [
+    "Load the shared Google Fonts URL once at the top of <head> (preconnect lines included for fastest first paint).",
+    "Apply colors via the css_variables block — easy to swap candidates by replacing one root block.",
+    "If using Tailwind, paste tailwind_extend_colors into theme.extend.colors. Refer to colors as bg-bounce-primary, text-bounce-text, etc.",
+    "Map font roles: body and form copy use Sofia Sans (--bounce-font-body); headlines, the wordmark, and CTA labels use Onest (--bounce-font-display).",
+    "Apply the colored-U rule to the wordmark and to display headlines — see wordmark_rule.html_pattern. Do not apply to body copy.",
+    "All three candidates share the same fonts — only the colors change between them, so swapping is a one-block edit."
+  ]
+}
